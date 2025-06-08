@@ -25,4 +25,22 @@ class RoadmapEntry(db.Model):
     def __repr__(self):
         return self.internal_title
 
+# Context manager
+with app.app_context():
+    db.create_all()
 
+
+# Roadmap page (homepage)
+@app.route("/", methods=["POST", "GET"])
+def index():
+    # Display default modules
+    if request.method == "GET":
+        # modules = RoadmapEntry.query()
+
+        return render_template('index.html')
+
+
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
