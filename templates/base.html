@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guitar Learning Roadmap</title>
+    <link rel="stylesheet" href="{{url_for("static", filename="styles.css")}}" />
     {% block head %}{% endblock %}
 </head>
 <body>
     <nav>
-        <a href="index.html">Guitar Roadmap</a>
-        <a href="metronome.html">Metronome</a>
+        <div class="nav-div">
+            <a href="index.html" class="nav-button">Roadmap</a>
+        <a href="metronome.html" class="nav-button">Metronome</a>
         <!-- TODO: Resources page? -->
         <!-- TODO: About page? -->
+        </div>
+        
     </nav>
 
     {% block body %}{% endblock %}
