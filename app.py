@@ -38,6 +38,8 @@ def index():
         # modules = RoadmapEntry.query()
 
         return render_template('index.html')
+    
+    
 
 
 
