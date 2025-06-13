@@ -9,11 +9,27 @@
     <h1>Guitar Learning Roadmap</h1>
 
     
-
+    <!-- Beginners Start Here  -->
     <div id="beginners-start-here" class="module">
         <button class="module-button">Beginners Start Here!</button>
     </div>
-    <div id="beginners-start-here-sidebar" class="hidden"></div>
+    <div id="beginners-start-here-sidebar" class="hidden">
+        <table>
+            <th>Title</th>
+            <th>Video Length</th>
+            <th>URL</th>
+
+            {% for bsh_module in bsh_modules %}
+                <tr>
+                    <td>{{bsh_module.internal_title}}</td>
+                    <td>{{bsh_module.length}}</td>
+                    <td>{{bsh_module.url}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        
+
+    </div>
 
 </div>
 

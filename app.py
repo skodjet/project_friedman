@@ -4,11 +4,12 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from datetime import timezone
 
+
 app = Flask(__name__)
 Scss(app)
 
 # Configure SQLAlchemy
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///roadmap.csv"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATION"] = False
 db = SQLAlchemy(app)
 
@@ -19,7 +20,7 @@ class RoadmapEntry(db.Model):
     length = db.Column(db.Integer)
     url = db.Column(db.String(255), primary_key=True)
     # TODO: Figure out how JSON works in SQLAlchemy and Flask
-    category = db.Column(db.JSON)
+    category = db.Column(db.String(20))
     ordering = db.Column(db.Integer)
 
     def __repr__(self):
@@ -35,9 +36,11 @@ with app.app_context():
 def index():
     # Display default modules
     if request.method == "GET":
-        # modules = RoadmapEntry.query()
+        # Get beginners start here modules
+        bsh_modules = RoadmapEntry.query.filter_by(category = "bsh").all()
 
-        return render_template('index.html')
+
+        return render_template('index.html', bsh_modules=bsh_modules)
     
     
 
@@ -45,4 +48,9 @@ def index():
 
 
 if __name__ == "__main__":
+    # Load the data from roadmap_db.csv
+    from load_data import load_data
+    load_data()
+
+    # Run the app
     app.run(debug=True)

@@ -2,6 +2,7 @@
 $module-color: rgb(72, 84, 220);
 $page-color: #313030;
 $nav-color: #464950;
+$sidebar-color: #2d2d2d;
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -67,7 +68,11 @@ body {
         width: 80%;
         height: 100vh;
 
-        background-color: red;
+        background-color: $sidebar-color;
+    }
+
+    tr {
+        font-size: 12px;
     }
 }
 

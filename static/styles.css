@@ -54,7 +54,10 @@ body #beginners-start-here-sidebar {
   right: 0;
   width: 80%;
   height: 100vh;
-  background-color: red;
+  background-color: #2d2d2d;
+}
+body tr {
+  font-size: 12px;
 }
 
 .hidden {
