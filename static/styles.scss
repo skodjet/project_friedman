@@ -71,8 +71,33 @@ body {
         background-color: $sidebar-color;
     }
 
-    tr {
-        font-size: 12px;
+    .module {
+        .module-header, .module-progress-text {
+            text-align: center;
+        }
+        
+        table {
+            table-layout: fixed;
+            width: 90%;
+            margin: 50px auto;
+        }
+
+        th, td {
+            text-align: left;
+            padding-bottom: 20px;
+        }
+
+
+
+        tr {
+            font-size: 16px;
+        }
+    }
+
+    
+
+    a {
+        color: #fff;
     }
 }
 

@@ -13,7 +13,9 @@
     <div id="beginners-start-here" class="module">
         <button class="module-button">Beginners Start Here!</button>
     </div>
-    <div id="beginners-start-here-sidebar" class="hidden">
+    <div id="beginners-start-here-sidebar" class="hidden module">
+        <h2 class="module-header">Beginners Start Here</h3>
+        <h4 class="module-progress-text">Progress</h5>
         <table>
             <th>Title</th>
             <th>Video Length</th>
@@ -22,8 +24,8 @@
             {% for bsh_module in bsh_modules %}
                 <tr>
                     <td>{{bsh_module.internal_title}}</td>
-                    <td>{{bsh_module.length}}</td>
-                    <td>{{bsh_module.url}}</td>
+                    <td>{{bsh_module.length}} minutes</td>
+                    <td><a href="{{bsh_module.url}}">{{bsh_module.url}}</a></td>
                 </tr>
             {% endfor %}
         </table>
