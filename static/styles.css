@@ -48,13 +48,26 @@ body #beginners-start-here {
   display: flex;
   justify-content: center;
 }
-body #beginners-start-here-sidebar {
+body .module {
   position: fixed;
   top: 0;
   right: 0;
   width: 80%;
   height: 100vh;
   background-color: #2d2d2d;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(100%);
+  will-change: transform;
+}
+body .module.shown {
+  transform: translateX(0);
+}
+body .module .exit-button {
+  background: url("x_icon.png") no-repeat center center;
+  width: 60px;
+  height: 60px;
+  border: none;
+  cursor: pointer;
 }
 body .module .module-header, body .module .module-progress-text {
   text-align: center;
@@ -63,22 +76,21 @@ body .module table {
   table-layout: fixed;
   width: 90%;
   margin: 50px auto;
+  border-collapse: collapse;
 }
-body .module th, body .module td {
+body .module th {
   text-align: left;
-  padding-bottom: 20px;
+  padding-bottom: 15px;
+}
+body .module td {
+  text-align: left;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #515151;
 }
 body .module tr {
   font-size: 16px;
 }
 body a {
   color: #fff;
-}
-
-.hidden {
-  display: none;
-}
-
-.shown {
-  display: block;
 }/*# sourceMappingURL=styles.css.map */

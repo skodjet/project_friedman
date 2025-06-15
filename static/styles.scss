@@ -3,6 +3,7 @@ $module-color: rgb(72, 84, 220);
 $page-color: #313030;
 $nav-color: #464950;
 $sidebar-color: #2d2d2d;
+$table-row-border-color: #515151;
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -61,17 +62,29 @@ body {
         justify-content: center;
     }
 
-    #beginners-start-here-sidebar {
+    .module {
         position: fixed;
         top: 0;
         right: 0;
         width: 80%;
         height: 100vh;
-
         background-color: $sidebar-color;
-    }
+        transition: transform 0.3s ease-in-out;
+        transform: translateX(100%);
+        will-change: transform;
 
-    .module {
+        &.shown {
+            transform: translateX(0);
+        }
+        
+        .exit-button {
+            background: url('x_icon.png') no-repeat center center;
+            width: 60px;
+            height: 60px;
+            border: none;
+            cursor: pointer;
+        }
+
         .module-header, .module-progress-text {
             text-align: center;
         }
@@ -80,11 +93,20 @@ body {
             table-layout: fixed;
             width: 90%;
             margin: 50px auto;
+            border-collapse: collapse;
         }
 
-        th, td {
+        th {
             text-align: left;
-            padding-bottom: 20px;
+            padding-bottom: 15px;
+            
+        }
+
+        td {
+            text-align: left;
+            padding-top: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid $table-row-border-color;
         }
 
 
@@ -99,13 +121,4 @@ body {
     a {
         color: #fff;
     }
-}
-
-
-.hidden {
-    display: none;
-}
-
-.shown {
-    display: block;
 }
