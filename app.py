@@ -17,9 +17,9 @@ db = SQLAlchemy(app)
 class RoadmapEntry(db.Model):
     external_title = db.Column(db.String(255))
     internal_title = db.Column(db.String(255))
+    uploader = db.Column(db.String(255))
     length = db.Column(db.Integer)
     url = db.Column(db.String(255), primary_key=True)
-    # TODO: Figure out how JSON works in SQLAlchemy and Flask
     category = db.Column(db.String(20))
     ordering = db.Column(db.Integer)
 
@@ -48,6 +48,7 @@ def index():
 
 
 if __name__ == "__main__":
+
     # Load the data from roadmap_db.csv
     from load_data import load_data
     load_data()
