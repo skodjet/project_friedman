@@ -30,10 +30,21 @@
                 </tr>
             {% endfor %}
         </table>
-        
-
     </div>
 
+    <!-- Arrow -->
+     <div id="arrow-1" class="arrow">
+        <svg width ="200" height="200" viewBox="0 0 100 100" overflow="visible">
+            <defs>
+                <marker id="arrowhead" markerWidth="6" markerHeight="6" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
+                    <polygon points="0 0, 6 3, 0 6" fill="white" />
+                </marker>
+            </defs>
+
+            <path d="M80, 10 C80, 50 40, 70 10, 90" stroke="white" fill="transparent" stroke-width="3" marker-end="url(#arrowhead)" transform="scale(0.5)" />
+        </svg>
+     </div>
+     
 </div>
 
 <script src="{{ url_for('static', filename='roadmap_script.js') }}"></script>

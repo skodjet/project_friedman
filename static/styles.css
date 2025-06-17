@@ -15,6 +15,11 @@ body .module-button {
   width: 180px;
   background-color: rgb(72, 84, 220);
   color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+body .module-button:hover {
+  background-color: rgb(44, 53, 152);
 }
 body nav {
   width: 100%;
@@ -90,6 +95,10 @@ body .module td {
 }
 body .module tr {
   font-size: 16px;
+}
+body #arrow-1 {
+  margin-left: 850px;
+  margin-top: -30px;
 }
 body a {
   color: #fff;
