@@ -96,9 +96,17 @@ body .module td {
 body .module tr {
   font-size: 16px;
 }
-body #arrow-1 {
-  margin-left: 850px;
-  margin-top: -30px;
+body .content #arrow1 {
+  position: absolute;
+  margin-top: 10px;
+  left: 45%;
+  transform: rotate(-45deg) scale(5);
+}
+body .content #arrow2 {
+  position: absolute;
+  margin-top: 10px;
+  left: 53%;
+  transform: rotate(-135deg) scale(5);
 }
 body a {
   color: #fff;
