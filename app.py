@@ -39,12 +39,7 @@ def index():
         # Get beginners start here modules
         bsh_modules = RoadmapEntry.query.filter_by(category = "bsh").all()
 
-
         return render_template('index.html', bsh_modules=bsh_modules)
-    
-    
-
-
 
 
 if __name__ == "__main__":

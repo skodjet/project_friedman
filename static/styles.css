@@ -108,6 +108,9 @@ body .content #arrow2 {
   left: 53%;
   transform: rotate(-135deg) scale(5);
 }
+body .content .hidden {
+  display: none !important;
+}
 body a {
   color: #fff;
 }/*# sourceMappingURL=styles.css.map */
