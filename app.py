@@ -26,6 +26,7 @@ class RoadmapEntry(db.Model):
     def __repr__(self):
         return self.internal_title
 
+
 # Context manager
 with app.app_context():
     db.create_all()
@@ -39,7 +40,8 @@ def index():
         # Get beginners start here modules
         bsh_modules = RoadmapEntry.query.filter_by(category = "bsh").all()
 
-        return render_template('index.html', bsh_modules=bsh_modules)
+        print(len(bsh_modules))
+        return render_template('index.html', bsh_modules = bsh_modules, num_bsh_modules = len(bsh_modules))
 
 
 if __name__ == "__main__":

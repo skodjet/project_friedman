@@ -77,6 +77,10 @@ body .module .exit-button {
 body .module .module-header, body .module .module-progress-text {
   text-align: center;
 }
+body .module .progress-bar {
+  display: block;
+  margin: 30px auto;
+}
 body .module table {
   table-layout: fixed;
   width: 90%;

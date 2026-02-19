@@ -95,6 +95,11 @@ body {
         .module-header, .module-progress-text {
             text-align: center;
         }
+
+        .progress-bar {
+            display: block;
+            margin: 30px auto;
+        }
         
         table {
             table-layout: fixed;

@@ -3,14 +3,13 @@ const beginners_start_here_sidebar = document.getElementById('beginners-start-he
 const exit_buttons = document.querySelectorAll('.exit-button');
 const arrows = document.querySelectorAll('.arrow');
 
+// Beginners start here
 beginners_start_here_button.addEventListener('click', () => {
     beginners_start_here_sidebar.classList.add('shown');
     arrows.forEach(arrow => {
         arrow.classList.add('hidden');
     })
 });
-
-// Setup for exit buttons
 exit_buttons.forEach(button => {
     button.addEventListener('click', () => {
         const shown_sidebar = document.querySelector('.shown');
@@ -21,6 +20,7 @@ exit_buttons.forEach(button => {
         })
     });
 });
+
 
 
 
