@@ -94,11 +94,18 @@ body {
 
         .module-header, .module-progress-text {
             text-align: center;
+            margin-bottom: 10px;
         }
 
         .progress-bar {
             display: block;
-            margin: 30px auto;
+            margin: 10px auto;
+            width: 30%;
+        }
+        
+        .progress-counter {
+            text-align: center;
+            margin-top: 0;
         }
         
         table {

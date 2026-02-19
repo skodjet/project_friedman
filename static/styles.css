@@ -76,10 +76,16 @@ body .module .exit-button {
 }
 body .module .module-header, body .module .module-progress-text {
   text-align: center;
+  margin-bottom: 10px;
 }
 body .module .progress-bar {
   display: block;
-  margin: 30px auto;
+  margin: 10px auto;
+  width: 30%;
+}
+body .module .progress-counter {
+  text-align: center;
+  margin-top: 0;
 }
 body .module table {
   table-layout: fixed;

@@ -12,15 +12,9 @@ def load_data():
         with open("roadmap_db.csv", newline="", encoding="utf-8-sig") as file:
             reader = csv.DictReader(file)
 
-            # DEBUG
-            # existing_urls = {row.url for row in RoadmapEntry.query.all()}
-            # print(existing_urls)
-            # exit(1)
+            
 
             for row in reader:
-
-                # DEBUG
-                # print("\nURL: " + row["url"])
 
                 entry = RoadmapEntry(
                     external_title = row["external_title"], 
@@ -33,7 +27,5 @@ def load_data():
                 )
                 db.session.add(entry)
 
-                # DEBUG
-                # print(entry)
 
             db.session.commit()

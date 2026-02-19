@@ -39,8 +39,6 @@ def index():
     if request.method == "GET":
         # Get beginners start here modules
         bsh_modules = RoadmapEntry.query.filter_by(category = "bsh").all()
-
-        print(len(bsh_modules))
         return render_template('index.html', bsh_modules = bsh_modules, num_bsh_modules = len(bsh_modules))
 
 
