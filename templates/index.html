@@ -20,23 +20,24 @@
         
         <h5 class="module-progress-text">Progress</h5>
         <!-- TODO: Add progress bar that fills once the user watches each video -->
-        <!-- TODO: Change this progress counter's value as the "watched" buttons are clicked -->
-        <p class="progress-counter" id="bsh_progress"></p>
-        <progress class="progress-bar" id="bsh_progress" max="num-bsh-modules" value="0"></progress>
+        <!-- TODO: Change this progress counter's value as the "watched" buttons are clickedt -->
+        <p class="progress-counter" id="bsh-completed-count"></p>
+        <progress class="progress-bar" id="bsh-progress" max="{{num_bsh_modules}}" value="0"></progress>
 
 
         <table>
             <th>Title</th>
             <th>Video Length</th>
             <th>URL</th>
+            <th>Watched</th>
 
             {% for bsh_module in bsh_modules %}
                 <tr>
                     <td>{{bsh_module.internal_title}}</td>
                     <td>{{bsh_module.length}} minutes</td>
                     <td><a href="{{bsh_module.url}}">{{bsh_module.url}}</a></td>
-                    <!-- TODO: Add a check box for watched -->
-                    <td>Watched</td>
+                    <td><input type="checkbox" class="bsh-checkbox"></td>
+                    
                 </tr>
             {% endfor %}
         </table>

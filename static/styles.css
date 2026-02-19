@@ -100,6 +100,9 @@ body .module td {
 body .module tr {
   font-size: 16px;
 }
+body .module input {
+  margin: 0 10%;
+}
 body .content #arrow1 {
   position: absolute;
   margin-top: 10px;
