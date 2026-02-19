@@ -41,5 +41,9 @@ bsh_checkboxes.forEach(bsh_checkbox => {
 });
 
 
+// Basic chords
+// TODO: Make above logic into a function
+
+
 
 

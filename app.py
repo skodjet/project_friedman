@@ -37,9 +37,15 @@ with app.app_context():
 def index():
     # Display default modules
     if request.method == "GET":
-        # Get beginners start here modules
+        # Beginners Start Here
         bsh_modules = RoadmapEntry.query.filter_by(category = "bsh").all()
-        return render_template('index.html', bsh_modules = bsh_modules, num_bsh_modules = len(bsh_modules))
+        # Basic Chords
+        bc_modules = RoadmapEntry.query.filter_by(category = "basic-chords").all()
+
+        return render_template('index.html', bsh_modules = bsh_modules, num_bsh_modules = len(bsh_modules), 
+                                             bc_modules = bc_modules, num_bc_modules = len(bc_modules))
+    
+        
 
 
 if __name__ == "__main__":

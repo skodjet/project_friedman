@@ -63,10 +63,15 @@ body {
         border-color: transparent;
     }
 
-    #beginners-start-here {
+    .module-button-div {
         height: 80px;
         display: flex;
         justify-content: center;
+    }
+
+    #basic-chords {
+        width: 50%;
+        margin: 5% 15%;
     }
 
     .module {
