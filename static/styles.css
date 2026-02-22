@@ -53,9 +53,12 @@ body .module-button-div {
   display: flex;
   justify-content: center;
 }
-body #basic-chords {
-  width: 50%;
-  margin: 5% 15%;
+body .module-row {
+  display: flex;
+  justify-content: center;
+  gap: 150px;
+  margin-top: 5%;
+  width: 100%;
 }
 body .module {
   position: fixed;

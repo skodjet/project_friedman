@@ -69,10 +69,25 @@ body {
         justify-content: center;
     }
 
-    #basic-chords {
-        width: 50%;
-        margin: 5% 15%;
+    .module-row {
+        display: flex;
+        justify-content: center;
+        gap: 150px;
+        margin-top: 5%;
+        width: 100%
     }
+
+    // #basic-chords {
+    //     width: 20%;
+    //     margin-top: 5%;
+    //     margin-left: 32%;
+    // }
+
+    // #picking-1 {
+    //     width: 20%;
+    //     margin-top: 5%;
+    //     margin-right: 32%;
+    // }
 
     .module {
         position: fixed;

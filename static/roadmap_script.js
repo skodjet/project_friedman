@@ -72,12 +72,17 @@ function setup_sidebar(button, sidebar, progress_bar, checkboxes, completed_coun
 }
 
 // Beginners start here
-setup_sidebar(document.getElementById('beginners-start-here'), document.getElementById('beginners-start-here-sidebar'), 
+setup_sidebar(document.getElementById('beginners-start-here-button'), document.getElementById('beginners-start-here-sidebar'), 
               document.getElementById('bsh-progress'), document.querySelectorAll('.bsh-checkbox'), document.getElementById('bsh-completed-count'));
 
 // Basic chords
-setup_sidebar(document.getElementById('basic-chords'), document.getElementById('basic-chords-sidebar'), 
+setup_sidebar(document.getElementById('basic-chords-button'), document.getElementById('basic-chords-sidebar'), 
               document.getElementById('bc-progress'), document.querySelectorAll('.bc-checkbox'), document.getElementById('bc-completed-count'));
+
+// Picking 1
+setup_sidebar(document.getElementById('picking-1-button'), document.getElementById('picking-1-sidebar'), 
+              document.getElementById('pck1-progress'), document.querySelectorAll('.pck1-checkbox'), document.getElementById('pck1-completed-count'));
+
 
 
 

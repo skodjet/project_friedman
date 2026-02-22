@@ -41,9 +41,12 @@ def index():
         bsh_modules = RoadmapEntry.query.filter_by(category = "bsh").all()
         # Basic Chords
         bc_modules = RoadmapEntry.query.filter_by(category = "basic-chords").all()
+        # Picking 1
+        pck1_modules = RoadmapEntry.query.filter_by(category = "picking1").all()
 
         return render_template('index.html', bsh_modules = bsh_modules, num_bsh_modules = len(bsh_modules), 
-                                             bc_modules = bc_modules, num_bc_modules = len(bc_modules))
+                                             bc_modules = bc_modules, num_bc_modules = len(bc_modules), 
+                                             pck1_modules = pck1_modules, num_pck1_modules = len(pck1_modules))
     
         
 
