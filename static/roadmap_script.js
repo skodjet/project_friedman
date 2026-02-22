@@ -1,3 +1,4 @@
+// Sidebar exit button functionality
 const arrows = document.querySelectorAll('.arrow');
 const exit_buttons = document.querySelectorAll('.exit-button');
 exit_buttons.forEach(button => {
@@ -12,38 +13,71 @@ exit_buttons.forEach(button => {
 });
 
 // Beginners start here
-const beginners_start_here_button = document.getElementById('beginners-start-here');
-const beginners_start_here_sidebar = document.getElementById('beginners-start-here-sidebar');
-const bsh_progress_bar = document.getElementById('bsh-progress'); // Progress bar
-const bsh_checkboxes = document.querySelectorAll('.bsh-checkbox'); // Checkboxes for each module
-const num_bsh_modules = bsh_checkboxes.length;
-let bsh_modules_completed = 0; // Number of checkboxes checked
-let bsh_completed_count = document.getElementById('bsh-completed-count'); // Text
+// const beginners_start_here_button = document.getElementById('beginners-start-here');
+// const beginners_start_here_sidebar = document.getElementById('beginners-start-here-sidebar');
+// const bsh_progress_bar = document.getElementById('bsh-progress'); // Progress bar
+// const bsh_checkboxes = document.querySelectorAll('.bsh-checkbox'); // Checkboxes for each module
+// const num_bsh_modules = bsh_checkboxes.length;
+// let bsh_modules_completed = 0; // Number of checkboxes checked
+// let bsh_completed_count = document.getElementById('bsh-completed-count'); // Text
 
-beginners_start_here_button.addEventListener('click', () => {
-    beginners_start_here_sidebar.classList.add('shown');
-    arrows.forEach(arrow => {
-        arrow.classList.add('hidden');
-    })
-});
+// beginners_start_here_button.addEventListener('click', () => {
+//     beginners_start_here_sidebar.classList.add('shown');
+//     arrows.forEach(arrow => {
+//         arrow.classList.add('hidden');
+//     })
+// });
 
-bsh_checkboxes.forEach(bsh_checkbox => {
-    bsh_checkbox.addEventListener('click', () => {
-        if (bsh_checkbox.checked) {
-            bsh_modules_completed++;
-            bsh_progress_bar.value++;
-        } else {
-            bsh_modules_completed--;
-            bsh_progress_bar.value--;
-        }
-        bsh_completed_count.textContent = "(" + String(bsh_modules_completed) + "/" + String(num_bsh_modules) + ")";
+// bsh_checkboxes.forEach(bsh_checkbox => {
+//     bsh_checkbox.addEventListener('click', () => {
+//         if (bsh_checkbox.checked) {
+//             bsh_modules_completed++;
+//             bsh_progress_bar.value++;
+//         } else {
+//             bsh_modules_completed--;
+//             bsh_progress_bar.value--;
+//         }
+//         bsh_completed_count.textContent = "(" + String(bsh_modules_completed) + "/" + String(num_bsh_modules) + ")";
+//     });
+// });
+
+
+// Functionality for showing sidebar
+// completed count = <p> element of how many modules are completed
+function setup_sidebar(button, sidebar, progress_bar, checkboxes, completed_count) {
+    const num_modules = checkboxes.length;
+    let modules_completed = 0; // Number of checkboxes checked
+
+    // Show sidebar and hide arrows
+    button.addEventListener('click', () => {
+        sidebar.classList.add('shown');
+        arrows.forEach(arrow => {
+            arrow.classList.add('hidden');
+        })
     });
-});
 
+    // Checkboxes and progress bar functionality
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('click', () => {
+            if (checkbox.checked) {
+                modules_completed++;
+                progress_bar.value++;
+            } else {
+                modules_completed--;
+                progress_bar.value--;
+            }
+            completed_count.textContent = "(" + String(modules_completed) + "/" + String(num_modules) + ")";
+        });
+    });
+}
+
+// Beginners start here
+setup_sidebar(document.getElementById('beginners-start-here'), document.getElementById('beginners-start-here-sidebar'), 
+              document.getElementById('bsh-progress'), document.querySelectorAll('.bsh-checkbox'), document.getElementById('bsh-completed-count'));
 
 // Basic chords
-// TODO: Make above logic into a function
-
+setup_sidebar(document.getElementById('basic-chords'), document.getElementById('basic-chords-sidebar'), 
+              document.getElementById('bc-progress'), document.querySelectorAll('.bc-checkbox'), document.getElementById('bc-completed-count'));
 
 
 
