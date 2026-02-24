@@ -83,6 +83,12 @@ setup_sidebar(document.getElementById('basic-chords-button'), document.getElemen
 setup_sidebar(document.getElementById('picking-1-button'), document.getElementById('picking-1-sidebar'), 
               document.getElementById('pck1-progress'), document.querySelectorAll('.pck1-checkbox'), document.getElementById('pck1-completed-count'));
 
+// Articulation
+setup_sidebar(document.getElementById('artc-button'), document.getElementById('artc-sidebar'), 
+              document.getElementById('artc-progress'), document.querySelectorAll('.artc-checkbox'), document.getElementById('artc-completed-count'));
 
+// TODO: Advanced picking
+setup_sidebar(document.getElementById('picking-2-button'), document.getElementById('picking-2-sidebar'), 
+              document.getElementById('pck2-progress'), document.querySelectorAll('.pck2-checkbox'), document.getElementById('pck2-completed-count'));
 
 

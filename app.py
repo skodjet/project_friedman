@@ -35,18 +35,29 @@ with app.app_context():
 # Roadmap page (homepage)
 @app.route("/", methods=["POST", "GET"])
 def index():
+
+    # Helper to query csv. cat = string of category
+    def get_rows(cat):
+        return RoadmapEntry.query.filter_by(category = cat).all()
+
     # Display default modules
     if request.method == "GET":
         # Beginners Start Here
-        bsh_modules = RoadmapEntry.query.filter_by(category = "bsh").all()
+        bsh_modules = get_rows("bsh")
         # Basic Chords
-        bc_modules = RoadmapEntry.query.filter_by(category = "basic-chords").all()
+        bc_modules = get_rows("basic-chords")
         # Picking 1
-        pck1_modules = RoadmapEntry.query.filter_by(category = "picking1").all()
+        pck1_modules = get_rows("picking1")
+        # Articulation
+        artc_modules = get_rows("artc")
+        # Advanced Picking
+        pck2_modules = get_rows("picking2")
 
         return render_template('index.html', bsh_modules = bsh_modules, num_bsh_modules = len(bsh_modules), 
                                              bc_modules = bc_modules, num_bc_modules = len(bc_modules), 
-                                             pck1_modules = pck1_modules, num_pck1_modules = len(pck1_modules))
+                                             pck1_modules = pck1_modules, num_pck1_modules = len(pck1_modules), 
+                                             artc_modules = artc_modules, num_artc_modules = len(artc_modules), 
+                                             pck2_modules = pck2_modules, num_pck2_modules = len(pck2_modules))
     
         
 

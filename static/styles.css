@@ -60,6 +60,11 @@ body .module-row {
   margin-top: 5%;
   width: 100%;
 }
+body #row2 {
+  margin-left: 43%;
+  width: 35%;
+  gap: 50px;
+}
 body .module {
   position: fixed;
   top: 0;
@@ -116,16 +121,24 @@ body .module tr {
 body .module input {
   margin: 0 10%;
 }
-body .content #arrow1 {
+body .content .arrow {
   position: absolute;
   margin-top: 10px;
+}
+body .content #arrow1 {
   left: 45%;
   transform: rotate(-45deg) scale(5);
 }
 body .content #arrow2 {
-  position: absolute;
-  margin-top: 10px;
   left: 53%;
+  transform: rotate(-135deg) scale(5);
+}
+body .content #arrow3 {
+  left: 56%;
+  transform: rotate(-45deg) scale(5);
+}
+body .content #arrow4 {
+  left: 63%;
   transform: rotate(-135deg) scale(5);
 }
 body .content .hidden {

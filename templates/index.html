@@ -15,7 +15,7 @@
 
         
         <h5 class="module-progress-text">Progress</h5>
-        <p class="progress-counter" id="{{ module_shorthand }}-completed-count">(0/5)</p>
+        <p class="progress-counter" id="{{ module_shorthand }}-completed-count">(0/{{ tbl_len }})</p>
         <progress class="progress-bar" id="{{ module_shorthand }}-progress" max="{{ tbl_len }}" value="0"></progress>
 
 
@@ -54,13 +54,27 @@
     <svg class="arrow" id="arrow1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m7.85 13l2.85 2.85q.3.3.288.7t-.288.7q-.3.3-.712.313t-.713-.288L4.7 12.7q-.3-.3-.3-.7t.3-.7l4.575-4.575q.3-.3.713-.287t.712.312q.275.3.288.7t-.288.7L7.85 11H19q.425 0 .713.288T20 12t-.288.713T19 13z"/></svg>
     <svg class="arrow" id="arrow2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m7.85 13l2.85 2.85q.3.3.288.7t-.288.7q-.3.3-.712.313t-.713-.288L4.7 12.7q-.3-.3-.3-.7t.3-.7l4.575-4.575q.3-.3.713-.287t.712.312q.275.3.288.7t-.288.7L7.85 11H19q.425 0 .713.288T20 12t-.288.713T19 13z"/></svg>
 
-    <div class="module-row">
+    <div id="row1" class="module-row">
         <!-- Basic Chords -->
         {{ render_module('basic-chords', 'Basic Chords', 'bc', bc_modules, num_bc_modules) }}
 
         <!-- Picking 1 -->
         {{ render_module('picking-1', 'Picking 1', 'pck1', pck1_modules, num_pck1_modules) }}
     </div>
+
+    <!-- Arrows -->
+    <svg class="arrow" id="arrow3" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m7.85 13l2.85 2.85q.3.3.288.7t-.288.7q-.3.3-.712.313t-.713-.288L4.7 12.7q-.3-.3-.3-.7t.3-.7l4.575-4.575q.3-.3.713-.287t.712.312q.275.3.288.7t-.288.7L7.85 11H19q.425 0 .713.288T20 12t-.288.713T19 13z"/></svg>
+    <svg class="arrow" id="arrow4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m7.85 13l2.85 2.85q.3.3.288.7t-.288.7q-.3.3-.712.313t-.713-.288L4.7 12.7q-.3-.3-.3-.7t.3-.7l4.575-4.575q.3-.3.713-.287t.712.312q.275.3.288.7t-.288.7L7.85 11H19q.425 0 .713.288T20 12t-.288.713T19 13z"/></svg>
+   
+    <div id="row2" class="module-row">
+        <!-- Picking 2 -->
+         {{ render_module('picking-2', 'Picking 2', 'pck2', pck2_modules, num_pck2_modules) }}
+
+        <!-- Articulation -->
+         {{ render_module('artc', 'Articulation', 'artc', artc_modules, num_artc_modules) }}
+    </div>
+
+    
     
 
      

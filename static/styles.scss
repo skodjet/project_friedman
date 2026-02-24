@@ -77,6 +77,14 @@ body {
         width: 100%
     }
 
+    #row2 {
+        margin-left: 43%;
+        width: 35%;
+        gap: 50px;
+    }
+
+    
+
     .module {
         position: fixed;
         top: 0;
@@ -146,17 +154,27 @@ body {
     }
 
     .content {
-        #arrow1 {
+        .arrow {
             position: absolute;
             margin-top: 10px;
+        }
+        #arrow1 {
             left: 45%;
             transform: rotate(-45deg) scale(5);
         }
 
         #arrow2 {
-            position: absolute;
-            margin-top: 10px;
             left: 53%;
+            transform: rotate(-135deg) scale(5);
+        }
+
+        #arrow3 {
+            left: 56%;
+            transform: rotate(-45deg) scale(5);
+        }
+
+        #arrow4 {
+            left: 63%;
             transform: rotate(-135deg) scale(5);
         }
 
