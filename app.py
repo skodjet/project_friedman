@@ -1,3 +1,5 @@
+# Entry point
+
 from flask import Flask, render_template, redirect, request
 from flask_scss import Scss
 from flask_sqlalchemy import SQLAlchemy
@@ -60,6 +62,11 @@ def index():
                                              pck2_modules = pck2_modules, num_pck2_modules = len(pck2_modules))
     
         
+# Signup page
+@app.route("/signup", methods=["POST", "GET"])
+def signup():
+    if request.method == "GET":
+        return render_template("signup.html")
 
 
 if __name__ == "__main__":

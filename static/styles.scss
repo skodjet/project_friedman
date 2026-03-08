@@ -6,7 +6,8 @@ $nav-color: #464950;
 $sidebar-color: #2d2d2d;
 $table-row-border-color: #515151;
 
-body {
+// Roadmap page
+body, roadmap-page {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: $page-color;
     color: #fff;
@@ -190,3 +191,7 @@ body {
         color: #fff;
     }
 }
+
+
+// Signup page
+

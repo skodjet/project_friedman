@@ -1,28 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Signup</title>
-        <link>
-    </head>
+{% extends 'base.html' %}
 
-    <body>
+{% block head %}
+     
+        <title>Signup</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+        </style>
+    
+{% endblock %}
+
+
+{% block body %}
+    <body class="signup-page">
         <div class="form-wrapper">
+            <h1>Sign up</h1>
             <form id="login-form">
                 <div>
-                    <input required type="text" name="firstname" id="email-input" placeholder="Email">
+                    <label for="email-input">
+                        <svg fill="#000000" width="45px" height="45px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16 15.503A5.041 5.041 0 1 0 16 5.42a5.041 5.041 0 0 0 0 10.083zm0 2.215c-6.703 0-11 3.699-11 5.5v3.363h22v-3.363c0-2.178-4.068-5.5-11-5.5z"/></svg>
+                    </label>
+                    <input required type="text" name="email" id="email-input" placeholder="Email">
                 </div>
                 <div>
+                    <label for="password-input">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 448 512" fill="currentColor"><path d="M400 224h-24v-72C376 68.2 307.8 0 224 0S72 68.2 72 152v72H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48zm-104 0H152v-72c0-39.7 32.3-72 72-72s72 32.3 72 72v72z"/></svg>
+                    </label>
                     <input required type="password" name="password" id="password-input" placeholder="Password">
                 </div>
                 <div>
+                     <label for="confirm-password-input">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 448 512" fill="currentColor"><path d="M400 224h-24v-72C376 68.2 307.8 0 224 0S72 68.2 72 152v72H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48zm-104 0H152v-72c0-39.7 32.3-72 72-72s72 32.3 72 72v72z"/></svg>
+                    </label>
                     <input required type="password" name="confirm-password" id="confirm-password-input" placeholder="Confirm Password">
                 </div>
                 <button type="submit">Signup</button>
             </form>
-
+            <p>Already have an Account? <a href="login.html">Login</a></p>
         </div>
     </body>
+{% endblock %}
 
-</html>
+
+   
+
+    
