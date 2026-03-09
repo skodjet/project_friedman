@@ -68,7 +68,6 @@ setup_sidebar(document.getElementById('picking-2-button'), document.getElementBy
               document.getElementById('pck2-progress'), document.querySelectorAll('.pck2-checkbox'), document.getElementById('pck2-completed-count'));
 
 
-// Navbar setup
 
 
 

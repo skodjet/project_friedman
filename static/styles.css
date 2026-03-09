@@ -1,43 +1,12 @@
-body, roadmap-page {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #313030;
-  color: #fff;
-  padding-top: 0px;
-}
-
-body h1, roadmap-page h1 {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-body .module-button, roadmap-page .module-button {
-  display: block;
-  border-radius: 10px;
-  height: 80px;
-  width: 180px;
-  background-color: #4854dc;
-  color: #fff;
-  cursor: pointer;
-  -webkit-transition: background-color 0.2s ease;
-  transition: background-color 0.2s ease;
-}
-
-body .module-button:hover, roadmap-page .module-button:hover {
-  background-color: #2c3598;
-}
-
-body nav, roadmap-page nav {
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+nav {
   width: 100%;
   height: 75px;
   margin-top: 0px;
   background-color: #464950;
 }
 
-body nav .nav-div, roadmap-page nav .nav-div {
+nav .nav-div {
   width: 250px;
   height: 100%;
   display: -webkit-box;
@@ -56,21 +25,53 @@ body nav .nav-div, roadmap-page nav .nav-div {
   padding-left: 20px;
 }
 
-body nav .nav-button, roadmap-page nav .nav-button {
+nav .nav-button {
   color: #fff;
   font-size: 20px;
   text-decoration: none;
   font-weight: bold;
 }
 
-body .module-button, roadmap-page .module-button {
+roadmap-page {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #313030;
+  color: #fff;
+  padding-top: 0px;
+}
+
+roadmap-page h1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+roadmap-page .module-button {
+  display: block;
+  border-radius: 10px;
+  height: 80px;
+  width: 180px;
+  background-color: #4854dc;
+  color: #fff;
+  cursor: pointer;
+  -webkit-transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease;
+}
+
+roadmap-page .module-button:hover {
+  background-color: #2c3598;
+}
+
+roadmap-page .module-button {
   font-weight: bold;
   height: 75%;
   border-radius: 8px;
   border-color: transparent;
 }
 
-body .module-button-div, roadmap-page .module-button-div {
+roadmap-page .module-button-div {
   height: 80px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -80,7 +81,7 @@ body .module-button-div, roadmap-page .module-button-div {
           justify-content: center;
 }
 
-body .module-row, roadmap-page .module-row {
+roadmap-page .module-row {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -92,13 +93,13 @@ body .module-row, roadmap-page .module-row {
   width: 100%;
 }
 
-body #row2, roadmap-page #row2 {
+roadmap-page #row2 {
   margin-left: 43%;
   width: 35%;
   gap: 50px;
 }
 
-body .module, roadmap-page .module {
+roadmap-page .module {
   position: fixed;
   top: 0;
   right: 0;
@@ -114,12 +115,12 @@ body .module, roadmap-page .module {
   will-change: transform;
 }
 
-body .module.shown, roadmap-page .module.shown {
+roadmap-page .module.shown {
   -webkit-transform: translateX(0);
           transform: translateX(0);
 }
 
-body .module .exit-button, roadmap-page .module .exit-button {
+roadmap-page .module .exit-button {
   background: url("x_icon.png") no-repeat center center;
   width: 60px;
   height: 60px;
@@ -127,83 +128,212 @@ body .module .exit-button, roadmap-page .module .exit-button {
   cursor: pointer;
 }
 
-body .module .module-header, body .module .module-progress-text, roadmap-page .module .module-header, roadmap-page .module .module-progress-text {
+roadmap-page .module .module-header, roadmap-page .module .module-progress-text {
   text-align: center;
   margin-bottom: 10px;
 }
 
-body .module .progress-bar, roadmap-page .module .progress-bar {
+roadmap-page .module .progress-bar {
   display: block;
   margin: 10px auto;
   width: 30%;
 }
 
-body .module .progress-counter, roadmap-page .module .progress-counter {
+roadmap-page .module .progress-counter {
   text-align: center;
   margin-top: 0;
 }
 
-body .module table, roadmap-page .module table {
+roadmap-page .module table {
   table-layout: fixed;
   width: 90%;
   margin: 50px auto;
   border-collapse: collapse;
 }
 
-body .module th, roadmap-page .module th {
+roadmap-page .module th {
   text-align: left;
   padding-bottom: 15px;
 }
 
-body .module td, roadmap-page .module td {
+roadmap-page .module td {
   text-align: left;
   padding-top: 20px;
   padding-bottom: 10px;
   border-bottom: 1px solid #515151;
 }
 
-body .module tr, roadmap-page .module tr {
+roadmap-page .module tr {
   font-size: 16px;
 }
 
-body .module input, roadmap-page .module input {
+roadmap-page .module input {
   margin: 0 10%;
 }
 
-body .content .arrow, roadmap-page .content .arrow {
+roadmap-page .content .arrow {
   position: absolute;
   margin-top: 10px;
 }
 
-body .content #arrow1, roadmap-page .content #arrow1 {
+roadmap-page .content #arrow1 {
   left: 45%;
   -webkit-transform: rotate(-45deg) scale(5);
           transform: rotate(-45deg) scale(5);
 }
 
-body .content #arrow2, roadmap-page .content #arrow2 {
+roadmap-page .content #arrow2 {
   left: 53%;
   -webkit-transform: rotate(-135deg) scale(5);
           transform: rotate(-135deg) scale(5);
 }
 
-body .content #arrow3, roadmap-page .content #arrow3 {
+roadmap-page .content #arrow3 {
   left: 56%;
   -webkit-transform: rotate(-45deg) scale(5);
           transform: rotate(-45deg) scale(5);
 }
 
-body .content #arrow4, roadmap-page .content #arrow4 {
+roadmap-page .content #arrow4 {
   left: 63%;
   -webkit-transform: rotate(-135deg) scale(5);
           transform: rotate(-135deg) scale(5);
 }
 
-body .content .hidden, roadmap-page .content .hidden {
+roadmap-page .content .hidden {
   display: none !important;
 }
 
-body a, roadmap-page a {
+roadmap-page a {
   color: #fff;
+}
+
+.signup-page {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  font-family: Inter, Segoe UI, sans-serif;
+  font-size: 12pt;
+  color: #ececec;
+  background-color: #1b1b1b;
+  background-image: url(assets/signup_background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
+}
+
+.signup-page #sign-up-text {
+  width: 240px;
+  text-align: center;
+}
+
+.signup-page .form-wrapper {
+  margin-left: 10%;
+  margin-top: 7%;
+  width: 20%;
+  height: 50vh;
+  padding-top: 3%;
+  padding-left: 5%;
+  padding-bottom: 3%;
+  background-color: rgba(53, 53, 53, 0.75);
+}
+
+.signup-page .form-wrapper #login-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 25px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 30px;
+  padding-left: 20px;
+  width: 240px;
+}
+
+.signup-page .form-wrapper .input-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.signup-page .form-wrapper label {
+  background-color: #219c36;
+  height: 36px;
+  width: 40px;
+  padding: 5px 0;
+  margin-bottom: 17px;
+  margin-right: 0;
+  border-radius: 10px 0 0 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.signup-page .form-wrapper input {
+  -webkit-transform: translateY(-9px);
+          transform: translateY(-9px);
+  margin-left: 0;
+  height: 43px;
+  font-family: Inter, Segoe UI, sans-serif;
+  font-size: 12px;
+  border-radius: 0 10px 10px 0px;
+  border: none;
+  background-color: #f7f7f7;
+  -webkit-transition: 100ms ease;
+  transition: 100ms ease;
+}
+
+.signup-page .form-wrapper input:hover {
+  border-top: 2px solid #219c36;
+  border-bottom: 2px solid #219c36;
+  border-right: 2px solid #219c36;
+}
+
+.signup-page .form-wrapper input:focus {
+  outline: none;
+  border: 2px;
+  border-color: #219c36;
+}
+
+.signup-page .form-wrapper button {
+  margin-top: 0px;
+  border: none;
+  border-radius: 100px;
+  padding: 0.85em;
+  background-color: #219c36;
+  font-family: Inter, Segoe UI, sans-serif;
+  color: #ececec;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  -webkit-transition: 400ms ease;
+  transition: 400ms ease;
+}
+
+.signup-page .form-wrapper button:hover {
+  background-color: #166122;
+}
+
+.signup-page #already-have-an-account {
+  margin: 30px 5%;
+  width: 100%;
+}
+
+.signup-page #already-have-an-account a {
+  text-decoration: none;
+  color: #219c36;
 }
 /*# sourceMappingURL=styles.css.map */
