@@ -257,6 +257,11 @@ body {
   text-align: center;
 }
 
+.signup-page #error-message {
+  color: red;
+  text-align: center;
+}
+
 .signup-page .form-wrapper {
   margin-left: 10%;
   margin-top: 7%;

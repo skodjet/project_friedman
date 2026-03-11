@@ -52,7 +52,6 @@ nav {
             cursor: pointer;
             transition: 400ms ease;
             text-decoration: none;
-           
         }
 
 
@@ -253,6 +252,11 @@ body {
 
     #sign-up-text {
         width: 240px;
+        text-align: center;
+    }
+
+    #error-message {
+        color: red;
         text-align: center;
     }
     
