@@ -9,6 +9,7 @@ import psycopg2
 import boto3
 import os
 from dotenv import load_dotenv
+from signup_login import hash_pwd, check_pwd
 
 
 app = Flask(__name__)
@@ -39,8 +40,19 @@ class RoadmapEntry(db.Model):
     ordering = db.Column(db.Integer)
 
     def __repr__(self):
-        return self.internal_title
+        return f"Internal title: self.internal_title"
+    
 
+# Data class for user
+class User(db.Model):
+    __tablename__ = "users" # To prevent Postgres conflicts
+    
+    email = db.Column(db.String(255), primary_key = True, unique=True, nullable=False)
+    hashed_password = db.Column(db.LargeBinary(), unique=True, nullable=False)
+
+    def __repr__(self):
+        return f"User: {self.email}"
+    
 
 # Context manager
 with app.app_context():
@@ -83,18 +95,28 @@ def signup():
     
     # User signup
     if request.method == "POST":
-        email = request.form["email"]
-        password = request.form["password"]
+        user_email = request.form["email"]
+        user_hashed_password = hash_pwd(request.form["password"])
+
+        # Store user in DB
+        new_user = User(
+            email = user_email,
+            hashed_password = user_hashed_password
+        )
+
+        db.session.add(new_user)
+        db.session.commit()
+
 
         # Test
-        print(email, password)
+        print(f"New user - Email: {new_user.email} Hashed Password: {new_user.hashed_password}")
 
         return "User has signed up"
 
 
 
 if __name__ == "__main__":
-    from user import hash_pwd, check_pwd
+    from signup_login import hash_pwd, check_pwd
     # Load the data from roadmap_db.csv
     from load_data import load_data
     load_data()

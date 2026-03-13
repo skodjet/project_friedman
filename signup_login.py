@@ -11,19 +11,8 @@ def hash_pwd(password:str, rounds=12) -> bytes:
     print(pwd)
     return pwd
 
-
 def check_pwd(password:str, hash:bytes) -> bool:
     return bcrypt.checkpw(password.encode(), hash)
-
-
-
-
-
-
-
-
-
-
 
 
 class UserAuth:

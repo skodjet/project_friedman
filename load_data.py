@@ -12,8 +12,6 @@ def load_data():
         with open("roadmap_db.csv", newline="", encoding="utf-8-sig") as file:
             reader = csv.DictReader(file)
 
-            
-
             for row in reader:
 
                 entry = RoadmapEntry(
