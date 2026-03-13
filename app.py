@@ -5,14 +5,27 @@ from flask_scss import Scss
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from datetime import timezone
+import psycopg2
+import boto3
+import os
+from dotenv import load_dotenv
 
 
 app = Flask(__name__)
 Scss(app)
 
+load_dotenv()
+username = os.getenv("AWS_RDS_USERNAME")
+password = os.getenv("AWS_RDS_PASSWORD")
+port = os.getenv("AWS_RDS_PORT")
+host = os.getenv("AWS_RDS_HOSTNAME")
+name = "postgres"
+DATABASE_URI = f"postgresql+psycopg2://{username}:{password}@{host}:{port}/{name}"
+
 # Configure SQLAlchemy
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
-app.config["SQLALCHEMY_TRACK_MODIFICATION"] = False
+
+app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URI
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
 # Data class for each roadmap entry
