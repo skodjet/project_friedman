@@ -67,10 +67,21 @@ def index():
 def signup():
     if request.method == "GET":
         return render_template("signup.html")
+    
+    # User signup
+    if request.method == "POST":
+        email = request.form["email"]
+        password = request.form["password"]
+
+        # Test
+        print(email, password)
+
+        return "User has signed up"
+
 
 
 if __name__ == "__main__":
-
+    from user import hash_pwd, check_pwd
     # Load the data from roadmap_db.csv
     from load_data import load_data
     load_data()
