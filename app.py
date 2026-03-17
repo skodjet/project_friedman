@@ -80,7 +80,8 @@ def index():
         # Advanced Picking
         pck2_modules = get_rows("picking2")
 
-        return render_template('index.html', bsh_modules = bsh_modules, num_bsh_modules = len(bsh_modules), 
+        return render_template('index.html', profile_hidden = "hidden", 
+                                             bsh_modules = bsh_modules, num_bsh_modules = len(bsh_modules), 
                                              bc_modules = bc_modules, num_bc_modules = len(bc_modules), 
                                              pck1_modules = pck1_modules, num_pck1_modules = len(pck1_modules), 
                                              artc_modules = artc_modules, num_artc_modules = len(artc_modules), 
@@ -97,6 +98,13 @@ def signup():
     if request.method == "POST":
         user_email = request.form["email"]
         user_hashed_password = hash_pwd(request.form["password"])
+
+        # Check if the user already exists in DB
+        db_user = db.session.query(User).filter_by(email=user_email).first()
+
+        if db_user:
+            print("test")
+            return render_template("signup.html", error="Email already in use")
 
         # Store user in DB
         new_user = User(
@@ -123,14 +131,19 @@ def login():
     # User login. Check if login is valid
     elif request.method == "POST":
         user_email = request.form["email"]
-        user_hashed_password = hash_pwd(request.form["password"])
-        db_user = db.session.query(User.email).filter_by(email=user_email).first()
+        db_user = db.session.query(User).filter_by(email=user_email).first()
         # Email does not exist
         if not db_user:
             return render_template("login.html", 
                                    error="Invalid Email")
-                
 
+        pwd_correct = check_pwd(request.form["password"], db_user.hashed_password)
+        # Incorrect password
+        if not pwd_correct:
+            return render_template("login.html", error="Invalid Password")
+                        
+        # Email and password both correct, redirect to roadmap
+        return render_template("index.html", signup_hiden="hidden")
 
 
 if __name__ == "__main__":

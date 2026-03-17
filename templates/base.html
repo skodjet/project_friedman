@@ -12,10 +12,17 @@
         <div class="nav-div">
             <a href="{{ url_for('index') }}" class="nav-button" id="roadmap-button">Roadmap</a>
             <a href="metronome.html" class="nav-button">Metronome</a>
-            <a class="signup-button" href="{{ url_for('signup') }}" >Sign in or Create an Account</a>
+            <a class="signup-button {{ signup_hidden }}" href="{{ url_for('signup') }}" >Sign in or Create an Account</a>
+
+            <button class="profile-button {{ profile_hidden }}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="rgb(236,236,236)" class="bi bi-person-circle" viewBox="0 0 16 16"><path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/><path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/></svg>   
+            </button>
+
             <!-- TODO: Resources page? -->
             <!-- TODO: About page? -->
         </div>
+
+        
         
     </nav>
 
@@ -23,3 +30,39 @@
        
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+The MIT License (MIT)
+
+Copyright (c) 2019-2024 The Bootstrap Authors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+-->

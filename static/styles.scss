@@ -20,14 +20,20 @@ nav {
         margin-top: 0px;
         background-color: $nav-color;
 
+        .hidden {
+            display: none;
+        }
+
         .nav-div {
-            width: 500px;
+            width: 100%;
             height: 100%;
             display: flex;
             align-items: center;
             flex-direction: row;
             justify-content: space-between;
+            gap: 50px;
             padding-left: 20px;
+            padding-right: 50px;
         }
 
         .nav-button {
@@ -58,6 +64,15 @@ nav {
         .signup-button:hover {
             background-color: $signup-hover-color;
         }
+
+        .profile-button {
+            background-color: transparent;
+            border: none;
+            margin-left: auto;
+            margin-right: 100px;
+        }
+
+        
     }
 
 
@@ -256,6 +271,7 @@ body {
     }
 
     #error-message {
+        width: 240px;
         color: red;
         text-align: center;
     }

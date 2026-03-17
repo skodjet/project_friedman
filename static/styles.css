@@ -7,8 +7,12 @@ nav {
   background-color: #464950;
 }
 
+nav .hidden {
+  display: none;
+}
+
 nav .nav-div {
-  width: 500px;
+  width: 100%;
   height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -23,7 +27,9 @@ nav .nav-div {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  gap: 50px;
   padding-left: 20px;
+  padding-right: 50px;
 }
 
 nav .nav-button {
@@ -53,6 +59,13 @@ nav .signup-button {
 
 nav .signup-button:hover {
   background-color: #166122;
+}
+
+nav .profile-button {
+  background-color: transparent;
+  border: none;
+  margin-left: auto;
+  margin-right: 100px;
 }
 
 body {
@@ -258,6 +271,7 @@ body {
 }
 
 .signup-page #error-message {
+  width: 240px;
   color: red;
   text-align: center;
 }
