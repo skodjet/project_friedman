@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Login</title>
+
+    <style>
+            @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+    </style>
+    <script src="{{ url_for('static', filename='validation.js') }}" defer></script>
+{% endblock %}
+
+{% block body %}
+    <body class="signup-page">
+        <div class="page-container">
+            <div class="form-wrapper">
+                <h1 id="sign-up-text">Login</h1>
+                
+                <form method="POST" action="login" id="signup-form">
+                    <div class="input-div">
+                        <label for="email-input">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30px" fill="currentColor" class="bi bi-person-bounding-box" viewBox="0 0 16 16"><path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5M.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5"/><path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/></svg>
+                        </label>
+                        <input required type="text" name="email" id="email-input" placeholder="Email">
+                    </div>
+                    <div class="input-div">
+                        <label for="password-input">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 448 512" fill="currentColor"><path d="M400 224h-24v-72C376 68.2 307.8 0 224 0S72 68.2 72 152v72H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48zm-104 0H152v-72c0-39.7 32.3-72 72-72s72 32.3 72 72v72z"/></svg>
+                        </label>
+                        <input required type="password" name="password" id="password-input" placeholder="Password">
+                    </div>
+                    <p id="error-message">{{ error }}</p>
+                    <button type="submit">Login</button>
+                </form>
+
+                <p id="create-account">Don't have an account? <a href="{{ url_for('signup') }}">Create Account</a></p>
+            </div>
+        </div>
+        
+    </body>
+
+{% endblock %}
+

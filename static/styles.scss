@@ -353,5 +353,12 @@ body {
         }
     } 
 
+    #create-account {
+        a {
+            text-decoration: none;
+            color: $signup-accent-color;
+        }
+    }
+
     
 }

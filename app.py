@@ -112,6 +112,24 @@ def signup():
         print(f"New user - Email: {new_user.email} Hashed Password: {new_user.hashed_password}")
 
         return "User has signed up"
+    
+
+# Login
+@app.route("/login", methods=["POST", "GET"])
+def login():
+    if request.method == "GET":
+        return render_template("login.html")
+    
+    # User login. Check if login is valid
+    elif request.method == "POST":
+        user_email = request.form["email"]
+        user_hashed_password = hash_pwd(request.form["password"])
+        db_user = db.session.query(User.email).filter_by(email=user_email).first()
+        # Email does not exist
+        if not db_user:
+            return render_template("login.html", 
+                                   error="Invalid Email")
+                
 
 
 
