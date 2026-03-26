@@ -29,7 +29,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URI
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
-# Data class for each roadmap entry
+# Data class for each roadmap entry. Entity
 class RoadmapEntry(db.Model):
     external_title = db.Column(db.String(255))
     internal_title = db.Column(db.String(255))
@@ -37,13 +37,13 @@ class RoadmapEntry(db.Model):
     length = db.Column(db.Integer)
     url = db.Column(db.String(255), primary_key=True)
     category = db.Column(db.String(20))
-    ordering = db.Column(db.Integer)
+    lesson_id = db.Column(db.Integer)
 
     def __repr__(self):
         return f"Internal title: self.internal_title"
     
 
-# Data class for user
+# Data class for user. Entity
 class User(db.Model):
     __tablename__ = "users" # To prevent Postgres conflicts
     
@@ -52,7 +52,14 @@ class User(db.Model):
 
     def __repr__(self):
         return f"User: {self.email}"
-    
+
+
+# Which lessons the user completed. Relationship
+class UserCompleted(db.Model):
+    __tablename__ = "user_lessons"
+    user_email = db.Column(db.String(255), primary_key = True)
+    lesson_id = db.Column(db.Integer, primary_key = True)
+
 
 # Context manager
 with app.app_context():

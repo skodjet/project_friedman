@@ -21,7 +21,7 @@ def load_data():
                     length = row["length"], 
                     url = row["url"].strip(),
                     category = row["category"], 
-                    ordering = row["ordering"]
+                    lesson_id = row["lesson_id"]
                 )
                 db.session.add(entry)
 

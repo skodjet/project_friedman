@@ -27,11 +27,10 @@
 
             {% for module in tbl %}
                 <tr>
-                    <td>{{module.internal_title}}</td>
-                    <td>{{module.length}} minutes</td>
+                    <td>{{ module.internal_title }}</td>
+                    <td>{{ module.length }} minutes</td>
                     <td><a href="{{ module.url }}">{{ module.url }}</a></td>
-                    <td><input type="checkbox" class="{{ module_shorthand }}-checkbox"></td>
-                    
+                    <td><input type="checkbox" class="{{ module_shorthand }}-checkbox" id="{{ module.internal_title }}-checkbox"></td>
                 </tr>
             {% endfor %}
         </table>
