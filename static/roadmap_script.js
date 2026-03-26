@@ -1,4 +1,4 @@
-// Functionality for showing sidebar
+// Functionality for showing sidebar, and event listeners for checkboxes
 // completed count = <p> element of how many modules are completed
 function setup_sidebar(button, sidebar, progress_bar, checkboxes, completed_count) {
     const num_modules = checkboxes.length;
@@ -30,6 +30,11 @@ function setup_sidebar(button, sidebar, progress_bar, checkboxes, completed_coun
 
 function navbar_setup(navbar_id) {
     
+}
+
+// Runs when user clicks a checkbox. Saves data to their account
+function save_data(user_id, lesson_id) {
+
 }
 
 

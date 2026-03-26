@@ -24,20 +24,24 @@ name = "postgres"
 DATABASE_URI = f"postgresql+psycopg2://{username}:{password}@{host}:{port}/{name}"
 
 # Configure SQLAlchemy
-
 app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URI
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
 # Data class for each roadmap entry. Entity
 class RoadmapEntry(db.Model):
+    __tablename__ = "roadmap_entry"
+
     external_title = db.Column(db.String(255))
     internal_title = db.Column(db.String(255))
     uploader = db.Column(db.String(255))
     length = db.Column(db.Integer)
-    url = db.Column(db.String(255), primary_key=True)
+    url = db.Column(db.String(255))
     category = db.Column(db.String(20))
-    lesson_id = db.Column(db.Integer)
+    lesson_id = db.Column(db.Integer, primary_key=True, unique=True)
+
+    # See who completed this lesson
+    completed_by_users = db.relationship('UserCompleted', backref='lesson')
 
     def __repr__(self):
         return f"Internal title: self.internal_title"
@@ -49,6 +53,9 @@ class User(db.Model):
     
     email = db.Column(db.String(255), primary_key = True, unique=True, nullable=False)
     hashed_password = db.Column(db.LargeBinary(), unique=True, nullable=False)
+    
+    # See which lessons this user has completed
+    completed_lessons = db.relationship('UserCompleted', backref='user')
 
     def __repr__(self):
         return f"User: {self.email}"
@@ -57,8 +64,8 @@ class User(db.Model):
 # Which lessons the user completed. Relationship
 class UserCompleted(db.Model):
     __tablename__ = "user_lessons"
-    user_email = db.Column(db.String(255), primary_key = True)
-    lesson_id = db.Column(db.Integer, primary_key = True)
+    user_email = db.Column(db.String(255), db.ForeignKey('users.email'), primary_key = True)
+    lesson_id = db.Column(db.Integer, db.ForeignKey('roadmap_entry.lesson_id'),primary_key = True)
 
 
 # Context manager
@@ -153,8 +160,12 @@ def login():
         if not pwd_correct:
             return render_template("login.html", error="Invalid Password")
                         
-        # Email and password both correct, redirect to roadmap
-        return render_template("index.html", signup_hiden="hidden")
+        # Email and password both correct, redirect to roadmap with user's completed lessons checked
+
+        # Get the lesson IDs for the user's completed lessons
+        completed_lessons = [entry.lesson_id for entry in db_user.completed_lessons]
+
+        return render_template("index.html", signup_hidden="hidden", completed_lessons=completed_lessons)
 
 
 if __name__ == "__main__":

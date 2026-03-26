@@ -25,12 +25,12 @@
             <th>URL</th>
             <th>Watched</th>
 
-            {% for module in tbl %}
+            {% for lesson in tbl %}
                 <tr>
-                    <td>{{ module.internal_title }}</td>
-                    <td>{{ module.length }} minutes</td>
-                    <td><a href="{{ module.url }}">{{ module.url }}</a></td>
-                    <td><input type="checkbox" class="{{ module_shorthand }}-checkbox" id="{{ module.internal_title }}-checkbox"></td>
+                    <td>{{ lesson.internal_title }}</td>
+                    <td>{{ lesson.length }} minutes</td>
+                    <td><a href="{{ lesson.url }}">{{ lesson.url }}</a></td>
+                    <td><input type="checkbox" class="{{ module_shorthand }}-checkbox {% if lesson.internal_title in completed_lessons %}checked{% endif %}" id="{{ lesson.internal_title }}-checkbox"></td>
                 </tr>
             {% endfor %}
         </table>
