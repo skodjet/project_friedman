@@ -96,6 +96,11 @@ def signup():
     
     # User signup
     if request.method == "POST":
+        # TEST
+        users = db.session.query(User).all()
+        for usr in users:
+            print(usr)
+
         user_email = request.form["email"]
         user_hashed_password = hash_pwd(request.form["password"])
 
@@ -103,7 +108,6 @@ def signup():
         db_user = db.session.query(User).filter_by(email=user_email).first()
 
         if db_user:
-            print("test")
             return render_template("signup.html", error="Email already in use")
 
         # Store user in DB
