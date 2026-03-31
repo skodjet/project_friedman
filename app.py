@@ -1,6 +1,8 @@
 # Entry point
 
-from flask import Flask, render_template, redirect, request
+# TODO: The lessons in the modules are blank after logging in
+
+from flask import Flask, render_template, redirect, request, session
 from flask_scss import Scss
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -27,6 +29,9 @@ DATABASE_URI = f"postgresql+psycopg2://{username}:{password}@{host}:{port}/{name
 app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URI
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
+
+# Configure session
+app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 
 # Data class for each roadmap entry. Entity
 class RoadmapEntry(db.Model):
@@ -161,12 +166,44 @@ def login():
             return render_template("login.html", error="Invalid Password")
                         
         # Email and password both correct, redirect to roadmap with user's completed lessons checked
+        # Save user's email for this session
+        session["user_email"] = db_user.email
 
         # Get the lesson IDs for the user's completed lessons
         completed_lessons = [entry.lesson_id for entry in db_user.completed_lessons]
 
-        return render_template("index.html", signup_hidden="hidden", completed_lessons=completed_lessons)
+        return render_template("index.html", user_email = user_email, signup_hidden="hidden", completed_lessons=completed_lessons)
+    
 
+# Update user data after completing a lesson
+@app.route("/update-progress", methods=["POST"])
+def update_progress():
+    user_email = session.get("user_email")
+    if user_email:
+        # Get the data from fetch()
+        data = request.get_json()
+        lesson_id = data['lesson_id']
+        status = data['status']
+
+        # Push the update to RDS
+        if status == "True":
+            new_entry = UserCompleted(user_email = user_email, lesson_id = lesson_id)
+            try:
+                db.session.add(new_entry)
+                db.session.commit()
+
+            except Exception as e:
+                db.session.rollback()
+                print(f"Error occurred: {e}")
+
+        else:
+            try:
+                db.session.delete(db.session.query.filter_by(user_email = user_email, lesson_id = lesson_id))
+                db.session.commit()
+            except Exception as e:
+                db.session.rollback()
+                print(f"Error occurred: {e}")
+        
 
 if __name__ == "__main__":
     from signup_login import hash_pwd, check_pwd

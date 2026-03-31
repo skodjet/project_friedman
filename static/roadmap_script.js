@@ -1,4 +1,4 @@
-// Functionality for showing sidebar, and event listeners for checkboxes
+// Functionality for showing sidebar
 // completed count = <p> element of how many modules are completed
 function setup_sidebar(button, sidebar, progress_bar, checkboxes, completed_count) {
     const num_modules = checkboxes.length;
@@ -15,7 +15,8 @@ function setup_sidebar(button, sidebar, progress_bar, checkboxes, completed_coun
     // Checkboxes and progress bar functionality
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener('click', () => {
-            if (checkbox.checked) {
+            const checked = checkbox.checked;
+            if (checked) {
                 modules_completed++;
                 progress_bar.value++;
             } else {
@@ -23,18 +24,16 @@ function setup_sidebar(button, sidebar, progress_bar, checkboxes, completed_coun
                 progress_bar.value--;
             }
             completed_count.textContent = "(" + String(modules_completed) + "/" + String(num_modules) + ")";
+
+            // Send information about completed lesson to Flask
+            const c_id = checkbox.id;
+            fetch('/update-progress', {
+                method: 'POST', 
+                body: JSON.stringify({lesson_id: c_id, status: checked}), 
+                headers: {'Content-Type': 'application/json'}
+            });
         });
     });
-}
-
-
-function navbar_setup(navbar_id) {
-    
-}
-
-// Runs when user clicks a checkbox. Saves data to their account
-function save_data(user_id, lesson_id) {
-
 }
 
 

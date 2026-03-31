@@ -30,7 +30,7 @@
                     <td>{{ lesson.internal_title }}</td>
                     <td>{{ lesson.length }} minutes</td>
                     <td><a href="{{ lesson.url }}">{{ lesson.url }}</a></td>
-                    <td><input type="checkbox" class="{{ module_shorthand }}-checkbox {% if lesson.internal_title in completed_lessons %}checked{% endif %}" id="{{ lesson.internal_title }}-checkbox"></td>
+                    <td><input type="checkbox" class="{{ module_shorthand }}-checkbox {% if lesson.internal_title in completed_lessons %}checked{% endif %}" id="{{ lesson.lesson_id }}-checkbox"></td>
                 </tr>
             {% endfor %}
         </table>
