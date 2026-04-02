@@ -14,9 +14,18 @@
             <a href="metronome.html" class="nav-button">Metronome</a>
             <a class="signup-button {{ signup_hidden }}" href="{{ url_for('signup') }}" >Sign in or Create an Account</a>
 
-            <button class="profile-button {{ profile_hidden }}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="rgb(236,236,236)" class="bi bi-person-circle" viewBox="0 0 16 16"><path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/><path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/></svg>   
-            </button>
+            <div class="profile-dropdown">
+                <button class="profile-button {{ profile_hidden }}" id="profileBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="rgb(236,236,236)" class="bi bi-person-circle" viewBox="0 0 16 16"><path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/><path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/></svg>   
+                </button>
+
+                <div class="dropdown-content" id="dropdownDiv">
+                    <p class="dropdown-hello-msg">Hello, you're logged in as {{ session.get('user_email') }}</p>
+                    <!-- TODO: Profile settings page? -->
+                    <a href="/logout" class="logout-link">Logout</a>
+                </div>
+            </div>
+                
 
             <!-- TODO: Resources page? -->
             <!-- TODO: About page? -->

@@ -1,5 +1,6 @@
-# Entry point
+# TODO: Create logout logic (Reload the page without any of the user's progress. Change display to hide profile button and show signup/sign-in button)
 
+# Entry point
 from flask import Flask, Response, jsonify, render_template, redirect, request, session, url_for
 from flask_scss import Scss
 from flask_sqlalchemy import SQLAlchemy
@@ -84,11 +85,17 @@ def index():
     user_email = session.get("user_email")
     completed_lessons = []
     profile_hidden = "hidden"
+    signup_hidden = ""
+
 
     if user_email:
         db_user = db.session.query(User).filter_by(email=user_email).first()
         completed_lessons = [entry.lesson_id for entry in db_user.completed_lessons]
         profile_hidden = ""
+        signup_hidden = "hidden"
+
+    # Test
+    print(f"completed lessons: {completed_lessons}")
 
     # Helper to query csv. cat = string of category
     def get_rows(cat):
@@ -108,7 +115,8 @@ def index():
         pck2_modules = get_rows("picking2")
 
         return render_template('index.html', completed_lessons = completed_lessons, 
-                                             profile_hidden = profile_hidden, 
+                                             profile_hidden = profile_hidden,
+                                             signup_hidden = signup_hidden, 
                                              bsh_modules = bsh_modules, num_bsh_modules = len(bsh_modules), 
                                              bc_modules = bc_modules, num_bc_modules = len(bc_modules), 
                                              pck1_modules = pck1_modules, num_pck1_modules = len(pck1_modules), 
@@ -200,7 +208,7 @@ def update_progress() -> Response:
 
     # Push the update to RDS
     # Add a record
-    if status == "True":
+    if status == True:
         new_entry = UserCompleted(user_email = user_email, lesson_id = lesson_id)
         try:
             db.session.add(new_entry)

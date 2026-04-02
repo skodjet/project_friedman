@@ -1,9 +1,9 @@
+
 // Functionality for showing sidebar
 // completed count = <p> element of how many modules are completed
 function setup_sidebar(button, sidebar, progress_bar, checkboxes, completed_count) {
-    const num_modules = checkboxes.length;
-    let modules_completed = 0; // Number of checkboxes checked
-
+    const num_lessons = checkboxes.length;
+    let lessons_completed = 0; // Number of checkboxes checked
     // Show sidebar and hide arrows
     button.addEventListener('click', () => {
         sidebar.classList.add('shown');
@@ -14,25 +14,44 @@ function setup_sidebar(button, sidebar, progress_bar, checkboxes, completed_coun
 
     // Checkboxes and progress bar functionality
     checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            lessons_completed++;
+            progress_bar.value++;
+        }
+        completed_count.textContent = "(" + String(lessons_completed) + "/" + String(num_lessons) + ")";
+
         checkbox.addEventListener('click', () => {
-            const checked = checkbox.checked;
-            if (checked) {
-                modules_completed++;
+            if (checkbox.checked) {
+                lessons_completed++;
                 progress_bar.value++;
             } else {
-                modules_completed--;
+                lessons_completed--;
                 progress_bar.value--;
             }
-            completed_count.textContent = "(" + String(modules_completed) + "/" + String(num_modules) + ")";
+            completed_count.textContent = "(" + String(lessons_completed) + "/" + String(num_lessons) + ")";
 
-            // Send information about completed lesson to Flask
+            // Send information about completed lesson to Flask and wait for response
             const c_id = checkbox.id;
             fetch('/update-progress', {
                 method: 'POST', 
-                body: JSON.stringify({lesson_id: c_id, status: checked}), 
+                body: JSON.stringify({lesson_id: c_id, status: checkbox.checked}), 
                 headers: {'Content-Type': 'application/json'}
             });
         });
+    });
+}
+
+
+// Functionality for navbar elements
+function setup_navbar() {
+    const profileBtn = document.getElementById("profileBtn");
+    const dropdownDiv = document.getElementById("dropdownDiv");
+
+    // Toggle dropdown menu on profile button
+    profileBtn.addEventListener('click', (e) => {
+        console.log("clicked");
+        e.stopPropagation();
+        dropdownDiv.classList.toggle('show');
     });
 }
 
@@ -50,6 +69,10 @@ exit_buttons.forEach(button => {
         })
     });
 });
+
+
+// Setup homepage
+setup_navbar();
 
 // Beginners start here
 setup_sidebar(document.getElementById('beginners-start-here-button'), document.getElementById('beginners-start-here-sidebar'), 
@@ -70,8 +93,5 @@ setup_sidebar(document.getElementById('artc-button'), document.getElementById('a
 // Advanced picking
 setup_sidebar(document.getElementById('picking-2-button'), document.getElementById('picking-2-sidebar'), 
               document.getElementById('pck2-progress'), document.querySelectorAll('.pck2-checkbox'), document.getElementById('pck2-completed-count'));
-
-
-
 
 

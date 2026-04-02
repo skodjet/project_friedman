@@ -13,7 +13,6 @@
         <button class="exit-button"></button>
         <h3 class="module-header">{{ module_title }}</h3>
 
-        
         <h5 class="module-progress-text">Progress</h5>
         <p class="progress-counter" id="{{ module_shorthand }}-completed-count">(0/{{ tbl_len }})</p>
         <progress class="progress-bar" id="{{ module_shorthand }}-progress" max="{{ tbl_len }}" value="0"></progress>
@@ -30,7 +29,7 @@
                     <td>{{ lesson.internal_title }}</td>
                     <td>{{ lesson.length }} minutes</td>
                     <td><a href="{{ lesson.url }}">{{ lesson.url }}</a></td>
-                    <td><input type="checkbox" class="{{ module_shorthand }}-checkbox {% if lesson.internal_title in completed_lessons %}checked{% endif %}" id="{{ lesson.lesson_id }}"></td>
+                    <td><input type="checkbox" {% if lesson.lesson_id in completed_lessons %}checked{% endif %} class="{{ module_shorthand }}-checkbox" id="{{ lesson.lesson_id }}"></td>
                 </tr>
             {% endfor %}
         </table>
@@ -80,5 +79,5 @@
      
 </div>
 
-<script src="{{ url_for('static', filename='roadmap_script.js') }}"></script>
+<script src="{{ url_for('static', filename='roadmap_script.js') }}" defer></script>
 {% endblock %}
