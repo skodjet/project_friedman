@@ -1,4 +1,4 @@
-# TODO: Create logout logic (Reload the page without any of the user's progress. Change display to hide profile button and show signup/sign-in button)
+# TODO: Fix the styles css and styles map css not generating. Also fix the profile button being shown when it shouldn't be
 
 # Entry point
 from flask import Flask, Response, jsonify, render_template, redirect, request, session, url_for
@@ -80,7 +80,6 @@ with app.app_context():
 # Roadmap page (homepage)
 @app.route("/", methods=["POST", "GET"])
 def index():
-
     # If the user is logged in, get the lesson IDs for the user's completed lessons
     user_email = session.get("user_email")
     completed_lessons = []
@@ -231,6 +230,13 @@ def update_progress() -> Response:
             return jsonify({"error": str(e)}), 500
         
     return jsonify({"status": "success"}), 200
+
+
+# Log the user out and redirect to homepage
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
     
         
         

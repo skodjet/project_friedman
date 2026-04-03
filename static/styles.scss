@@ -20,6 +20,10 @@ $signup-text-color: rgb(236, 236, 236);
 $signup-input-color: rgb(247, 247, 247);
 
 
+.hidden {
+    display: none !important;
+}
+
 nav {
         font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         width: 100%;
@@ -27,9 +31,7 @@ nav {
         margin-top: 0px;
         background-color: $nav-color;
 
-        .hidden {
-            display: none;
-        }
+        
 
         .nav-div {
             width: 100%;
@@ -78,6 +80,12 @@ nav {
             border: none;
             margin-left: auto;
             margin-right: 100px;
+        }
+
+        .profile-dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
         }
 
         .dropdown-content {
@@ -276,9 +284,7 @@ body {
             transform: rotate(-135deg) scale(5);
         }
 
-        .hidden {
-            display: none !important;
-        }
+        
 
     
 
