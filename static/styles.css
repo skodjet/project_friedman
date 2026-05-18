@@ -13,11 +13,21 @@ nav .nav-div {
   height: 100%;
   display: flex;
   align-items: center;
-  flex-direction: row;
   justify-content: space-between;
+  padding: 0 50px;
+}
+nav .nav-div .left-buttons {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
   gap: 50px;
-  padding-left: 20px;
-  padding-right: 50px;
+}
+nav .nav-div .right-buttons {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  padding-right: 5%;
 }
 nav .nav-button {
   color: #fff;
@@ -94,9 +104,17 @@ body {
 .roadmap-page .module-row {
   display: flex;
   justify-content: center;
-  gap: 150px;
+  align-items: center;
+  gap: 50px;
   margin-top: 5%;
   width: 100%;
+}
+.roadmap-page .module-row .arrow-svg {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  transform: rotate(-135deg);
+  color: #fff;
 }
 .roadmap-page #row2 {
   margin-left: 43%;

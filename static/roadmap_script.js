@@ -23,6 +23,8 @@ function setup_sidebar(button, sidebar, progress_bar, checkboxes, completed_coun
                 progress_bar.value--;
             }
             completed_count.textContent = "(" + String(modules_completed) + "/" + String(num_modules) + ")";
+
+            
         });
     });
 }
