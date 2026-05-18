@@ -49,10 +49,16 @@ function setup_navbar() {
 
     // Toggle dropdown menu on profile button
     profileBtn.addEventListener('click', (e) => {
-        console.log("clicked");
         e.stopPropagation();
         dropdownDiv.classList.toggle('show');
     });
+
+    // Clicking outside the dropdown also closes it
+    window.addEventListener('click', () => {
+            if (dropdownDiv.classList.contains('show')) {
+                dropdownDiv.classList.remove('show');
+            }
+        });
 }
 
 
