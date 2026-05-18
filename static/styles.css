@@ -1,12 +1,13 @@
+.hidden {
+  display: none !important;
+}
+
 nav {
   font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   width: 100%;
   height: 75px;
   margin-top: 0px;
   background-color: #464950;
-}
-nav .hidden {
-  display: none;
 }
 nav .nav-div {
   width: 100%;
@@ -55,10 +56,45 @@ nav .signup-button:hover {
   background-color: rgb(22, 97, 34);
 }
 nav .profile-button {
+  display: inline-block;
   background-color: transparent;
   border: none;
   margin-left: auto;
   margin-right: 100px;
+}
+nav .profile-dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+nav .dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #3b3b3b;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  border-radius: 8px;
+  padding: 10px 0;
+  color: rgb(236, 236, 236);
+}
+nav .dropdown-content.show {
+  display: block;
+}
+nav .dropdown-content p {
+  font-size: 14px;
+  padding: 0 10px;
+}
+nav .dropdown-content a {
+  color: rgb(33, 156, 54);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+nav .dropdown-content a:hover {
+  background-color: #444;
+  color: rgb(22, 97, 34);
 }
 
 body {
@@ -105,21 +141,36 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 50px;
-  margin-top: 5%;
+  gap: 40px;
   width: 100%;
 }
-.roadmap-page .module-row .arrow-svg {
-  width: 40px;
-  height: 40px;
+.roadmap-page .arrow-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin-top: -20px;
+  width: 100%;
+}
+.roadmap-page .arrow-row .arrow {
+  width: 100px;
+  height: 100px;
   flex-shrink: 0;
-  transform: rotate(-135deg);
   color: #fff;
+}
+.roadmap-page .arrow-row .left-arrow {
+  transform: rotate(-45deg);
+}
+.roadmap-page .arrow-row .right-arrow {
+  transform: rotate(-135deg);
 }
 .roadmap-page #row2 {
   margin-left: 43%;
   width: 35%;
   gap: 50px;
+}
+.roadmap-page #arrow-row2 {
+  margin-left: 10%;
 }
 .roadmap-page .module {
   position: fixed;
@@ -176,29 +227,6 @@ body {
 }
 .roadmap-page .module input {
   margin: 0 10%;
-}
-.roadmap-page .arrow {
-  position: absolute;
-  margin-top: 10px;
-}
-.roadmap-page #arrow1 {
-  left: 45%;
-  transform: rotate(-45deg) scale(5);
-}
-.roadmap-page #arrow2 {
-  left: 53%;
-  transform: rotate(-135deg) scale(5);
-}
-.roadmap-page #arrow3 {
-  left: 56%;
-  transform: rotate(-45deg) scale(5);
-}
-.roadmap-page #arrow4 {
-  left: 63%;
-  transform: rotate(-135deg) scale(5);
-}
-.roadmap-page .hidden {
-  display: none !important;
 }
 .roadmap-page a {
   color: #fff;

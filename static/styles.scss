@@ -174,7 +174,6 @@ body {
     }
 
     
-
     .module-button {
         font-weight: bold;
         height: 75%;
@@ -188,29 +187,37 @@ body {
         justify-content: center;
     }
 
-    // .module-row {
-    //     display: flex;
-    //     justify-content: center;
-    //     gap: 150px;
-    //     margin-top: 5%;
-    //     width: 100%
-    // }
-
-    // TES
+    
     .module-row {
         display: flex;
         justify-content: center;
-        align-items: center; // Aligns arrow vertically with buttons
-        gap: 50px;           // Controls the space between buttons and arrows
-        margin-top: 5%;
+        align-items: center; 
+        gap: 40px;
         width: 100%;
 
-        .arrow-svg {
-            width: 40px;
-            height: 40px;
-            flex-shrink: 0;   // Prevents the arrow from squishing on small screens
-            transform: rotate(-135deg); // Adjust rotation to point correctly
+    }
+
+    .arrow-row {
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+        gap: 40px;
+        margin-top: -20px;
+        width: 100%;
+
+        .arrow {
+            width: 100px;
+            height: 100px;
+            flex-shrink: 0;   
             color: #fff;
+        }
+
+        .left-arrow {
+            transform: rotate(-45deg);
+        }
+
+        .right-arrow {
+            transform: rotate(-135deg);
         }
     }
 
@@ -218,6 +225,10 @@ body {
         margin-left: 43%;
         width: 35%;
         gap: 50px;
+    }
+    
+    #arrow-row2 {
+        margin-left: 10%;
     }
 
     
@@ -288,33 +299,7 @@ body {
         input {
             margin: 0 10%;
         }
-    }
-
-        .arrow {
-            position: absolute;
-            margin-top: 10px;
-        }
-        #arrow1 {
-            left: 45%;
-            transform: rotate(-45deg) scale(5);
-        }
-
-        #arrow2 {
-            left: 53%;
-            transform: rotate(-135deg) scale(5);
-        }
-
-        #arrow3 {
-            left: 56%;
-            transform: rotate(-45deg) scale(5);
-        }
-
-        #arrow4 {
-            left: 63%;
-            transform: rotate(-135deg) scale(5);
-        }
-
-        
+    }        
 
     a {
         color: #fff;
