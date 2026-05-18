@@ -1,6 +1,7 @@
-# Entry point
+# TODO: Fix the styles css and styles map css not generating. Also fix the profile button being shown when it shouldn't be
 
-from flask import Flask, render_template, redirect, request
+# Entry point
+from flask import Flask, Response, jsonify, render_template, redirect, request, session, url_for
 from flask_scss import Scss
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -27,6 +28,9 @@ DATABASE_URI = f"postgresql+psycopg2://{username}:{password}@{host}:{port}/{name
 app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URI
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
+
+# Configure session
+app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 
 # Data class for each roadmap entry. Entity
 class RoadmapEntry(db.Model):
@@ -76,6 +80,21 @@ with app.app_context():
 # Roadmap page (homepage)
 @app.route("/", methods=["POST", "GET"])
 def index():
+    # If the user is logged in, get the lesson IDs for the user's completed lessons
+    user_email = session.get("user_email")
+    completed_lessons = []
+    profile_hidden = "hidden"
+    signup_hidden = ""
+
+
+    if user_email:
+        db_user = db.session.query(User).filter_by(email=user_email).first()
+        completed_lessons = [entry.lesson_id for entry in db_user.completed_lessons]
+        profile_hidden = ""
+        signup_hidden = "hidden"
+
+    # Test
+    print(f"completed lessons: {completed_lessons}")
 
     # Helper to query csv. cat = string of category
     def get_rows(cat):
@@ -94,7 +113,9 @@ def index():
         # Advanced Picking
         pck2_modules = get_rows("picking2")
 
-        return render_template('index.html', profile_hidden = "hidden", 
+        return render_template('index.html', completed_lessons = completed_lessons, 
+                                             profile_hidden = profile_hidden,
+                                             signup_hidden = signup_hidden, 
                                              bsh_modules = bsh_modules, num_bsh_modules = len(bsh_modules), 
                                              bc_modules = bc_modules, num_bc_modules = len(bc_modules), 
                                              pck1_modules = pck1_modules, num_pck1_modules = len(pck1_modules), 
@@ -161,12 +182,64 @@ def login():
             return render_template("login.html", error="Invalid Password")
                         
         # Email and password both correct, redirect to roadmap with user's completed lessons checked
+        # Save user's email for this session
+        session["user_email"] = db_user.email
+        return redirect(url_for('index'))
+    
 
-        # Get the lesson IDs for the user's completed lessons
-        completed_lessons = [entry.lesson_id for entry in db_user.completed_lessons]
+# Update user data after completing a lesson
+@app.route("/update-progress", methods=["POST"]) 
+def update_progress() -> Response:
+    user_email = session.get("user_email")
 
-        return render_template("index.html", signup_hidden="hidden", completed_lessons=completed_lessons)
+    # Return 401 if user isn't logged in and somehow POSTed to here
+    if not user_email:
+        return jsonify({"error": "Unauthorized"}), 401
 
+    # Get the data sent from fetch() in JS
+    data = request.get_json()
+    lesson_id = data['lesson_id']
+    status = data['status']
+
+    # TEST
+    print(f"lesson_id: {lesson_id}")
+    print(f"status: {status}")
+
+    # Push the update to RDS
+    # Add a record
+    if status == True:
+        new_entry = UserCompleted(user_email = user_email, lesson_id = lesson_id)
+        try:
+            db.session.add(new_entry)
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+            print(f"Error occurred: {e}")
+            return jsonify({"error": str(e)}), 500
+
+    # Delete a record
+    else:
+        try:
+            record = db.session.query(UserCompleted).filter_by(user_email = user_email, lesson_id = lesson_id).first()
+            if record:
+                db.session.delete(record)
+                db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+            print(f"Error occurred: {e}")
+            return jsonify({"error": str(e)}), 500
+        
+    return jsonify({"status": "success"}), 200
+
+
+# Log the user out and redirect to homepage
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
+    
+        
+        
 
 if __name__ == "__main__":
     from signup_login import hash_pwd, check_pwd
