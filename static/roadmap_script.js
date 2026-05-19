@@ -100,4 +100,6 @@ setup_sidebar(document.getElementById('artc-button'), document.getElementById('a
 setup_sidebar(document.getElementById('picking-2-button'), document.getElementById('picking-2-sidebar'), 
               document.getElementById('pck2-progress'), document.querySelectorAll('.pck2-checkbox'), document.getElementById('pck2-completed-count'));
 
-
+// Scales and Improv
+setup_sidebar(document.getElementById('scales-1-button'), document.getElementById('scales-1-sidebar'), 
+              document.getElementById('scales1-progress'), document.querySelectorAll('.scales1-checkbox'), document.getElementById('scales1-completed-count'));

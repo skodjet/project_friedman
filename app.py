@@ -112,6 +112,8 @@ def index():
         artc_modules = get_rows("artc")
         # Advanced Picking
         pck2_modules = get_rows("picking2")
+        # Scales and Improv
+        scales1_modules = get_rows("scales1")
 
         return render_template('index.html', completed_lessons = completed_lessons, 
                                              profile_hidden = profile_hidden,
@@ -120,7 +122,8 @@ def index():
                                              bc_modules = bc_modules, num_bc_modules = len(bc_modules), 
                                              pck1_modules = pck1_modules, num_pck1_modules = len(pck1_modules), 
                                              artc_modules = artc_modules, num_artc_modules = len(artc_modules), 
-                                             pck2_modules = pck2_modules, num_pck2_modules = len(pck2_modules))
+                                             pck2_modules = pck2_modules, num_pck2_modules = len(pck2_modules), 
+                                             scales1_modules = scales1_modules, num_scales1_modules = len(scales1_modules))
     
         
 # Signup page

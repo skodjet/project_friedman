@@ -165,12 +165,13 @@ body {
   transform: rotate(-135deg);
 }
 .roadmap-page #row2 {
-  margin-left: 43%;
+  margin-left: 33%;
   width: 35%;
   gap: 50px;
 }
-.roadmap-page #arrow-row2 {
-  margin-left: 10%;
+.roadmap-page #arrow-row2-rightdiv {
+  margin-left: 5%;
+  gap: 30px;
 }
 .roadmap-page .module {
   position: fixed;
