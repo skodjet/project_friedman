@@ -1,13 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap");
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #1a1a1f;
+  color: #f0f0f4;
+  font-family: "DM Sans", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
 .hidden {
   display: none !important;
 }
 
 nav {
-  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Syne", sans-serif;
   width: 100%;
-  height: 75px;
-  margin-top: 0px;
-  background-color: #464950;
+  height: 68px;
+  background-color: #111115;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  backdrop-filter: blur(12px);
 }
 nav .nav-div {
   width: 100%;
@@ -15,329 +32,607 @@ nav .nav-div {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 50px;
+  padding: 0 32px;
 }
-nav .nav-div .left-buttons {
+nav .left-buttons {
   height: 100%;
   display: flex;
   align-items: center;
-  flex-direction: row;
-  gap: 50px;
+  gap: 8px;
 }
-nav .nav-div .right-buttons {
+nav .right-buttons {
   display: flex;
-  justify-content: right;
   align-items: center;
-  padding-right: 5%;
+  gap: 16px;
 }
 nav .nav-button {
-  color: #fff;
-  font-size: 20px;
-  text-decoration: none;
-  font-weight: bold;
-}
-nav .signup-button {
-  color: #fff;
-  font-size: 15px;
-  border: none;
-  border-radius: 100px;
-  font-weight: 600;
-  padding: 0.85em;
-  background-color: rgb(33, 156, 54);
-  font-family: Inter, Segoe UI, sans-serif;
-  color: rgb(236, 236, 236);
+  color: #8a8a9a;
   font-size: 14px;
   font-weight: 600;
-  cursor: pointer;
-  transition: 400ms ease;
   text-decoration: none;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 6px;
+  transition: color 0.2s, background 0.2s;
+}
+nav .nav-button:hover, nav .nav-button#roadmap-button {
+  color: #f0f0f4;
+  background: rgba(255, 255, 255, 0.06);
+}
+nav .nav-button#roadmap-button {
+  color: #1db954;
+  background: rgba(29, 185, 84, 0.1);
+}
+nav .signup-button {
+  font-family: "Syne", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #fff;
+  background: #1db954;
+  border: none;
+  border-radius: 100px;
+  padding: 9px 20px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
 }
 nav .signup-button:hover {
-  background-color: rgb(22, 97, 34);
+  background: #158a3c;
+  transform: translateY(-1px);
 }
 nav .profile-button {
-  display: inline-block;
-  background-color: transparent;
+  background: transparent;
   border: none;
-  margin-left: auto;
-  margin-right: 100px;
-}
-nav .profile-dropdown {
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  transition: background 0.2s;
   position: relative;
-  display: flex;
-  align-items: center;
+}
+nav .profile-button:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+nav .profile-button svg {
+  display: block;
 }
 nav .dropdown-content {
   display: none;
   position: absolute;
-  right: 30px;
-  background-color: #3b3b3b;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 100;
-  border-radius: 8px;
-  padding: 10px 0;
-  color: rgb(236, 236, 236);
+  top: calc(100% + 10px);
+  right: 0;
+  background: #2e2e35;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  min-width: 180px;
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  padding: 8px 0;
+  color: #f0f0f4;
 }
 nav .dropdown-content.show {
   display: block;
 }
-nav .dropdown-content p {
-  font-size: 14px;
-  padding: 0 10px;
+nav .dropdown-content .user-email {
+  font-size: 12px;
+  color: #8a8a9a;
+  padding: 6px 14px 8px;
+  margin: 0;
+  word-break: break-all;
+}
+nav .dropdown-content hr {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  margin: 0 0 4px;
 }
 nav .dropdown-content a {
-  color: rgb(33, 156, 54);
-  padding: 12px 16px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  color: #f0f0f4;
+  padding: 9px 14px;
   text-decoration: none;
   display: block;
+  transition: background 0.15s, color 0.15s;
 }
 nav .dropdown-content a:hover {
-  background-color: #444;
-  color: rgb(22, 97, 34);
+  background: rgba(255, 255, 255, 0.06);
+  color: #1db954;
 }
-
-body {
-  margin: 0;
+nav .dropdown-content a.logout-link {
+  color: #e05555;
+}
+nav .dropdown-content a.logout-link:hover {
+  color: #ff6b6b;
+  background: rgba(224, 85, 85, 0.08);
 }
 
 .roadmap-page {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #313030;
-  color: #fff;
-  padding-top: 0px;
-  height: 100vh;
+  background-color: #1a1a1f;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: 40px 40px;
+  min-height: calc(100vh - 68px);
+  padding: 48px 24px 80px;
 }
 .roadmap-page h1 {
+  font-family: "Syne", sans-serif;
+  font-size: clamp(24px, 4vw, 40px);
+  font-weight: 800;
+  transform: scaleX(0.85);
+  text-align: center;
+  margin: 0 0 48px;
+  color: #f0f0f4;
+}
+.roadmap-page h1 span {
+  color: #1db954;
+}
+.roadmap-page .roadmap-flow {
   display: flex;
-  justify-content: center;
-  margin-top: 0;
-}
-.roadmap-page .module-button {
-  display: block;
-  border-radius: 10px;
-  height: 80px;
-  width: 180px;
-  background-color: rgb(72, 84, 220);
-  color: #fff;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-.roadmap-page .module-button:hover {
-  background-color: rgb(44, 53, 152);
-}
-.roadmap-page .module-button {
-  font-weight: bold;
-  height: 75%;
-  border-radius: 8px;
-  border-color: transparent;
-}
-.roadmap-page .module-button-div {
-  height: 80px;
-  display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
 }
 .roadmap-page .module-row {
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 40px;
+  align-items: stretch;
+  gap: 32px;
   width: 100%;
+}
+.roadmap-page .module-row .module-button-div {
+  flex: 1;
+  max-width: 220px;
+  display: flex;
+  justify-content: center;
+}
+.roadmap-page .module-button {
+  width: 100%;
+  min-height: 76px;
+  background: #242429;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 18px;
+  color: #f0f0f4;
+  font-family: "Syne", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.roadmap-page .module-button::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #4c5de8;
+  border-radius: 18px 0 0 18px;
+  transition: width 0.2s;
+}
+.roadmap-page .module-button:hover {
+  background: rgb(45.5376623377, 45.5376623377, 51.8623376623);
+  border-color: rgba(76, 93, 232, 0.45);
+  box-shadow: 0 0 0 1px rgba(76, 93, 232, 0.3), 0 8px 24px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+.roadmap-page .module-button:hover::before {
+  width: 6px;
+}
+.roadmap-page .module-button:active {
+  transform: translateY(0);
 }
 .roadmap-page .arrow-row {
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 40px;
-  margin-top: -20px;
+  align-items: flex-start;
+  gap: 32px;
   width: 100%;
+  margin: 0;
+  max-width: 860px;
 }
-.roadmap-page .arrow-row .arrow {
+.roadmap-page .arrow-row .arrow-cell {
+  flex: 1;
+  max-width: 220px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.roadmap-page .arrow-row .arrow-spacer {
+  flex: 1;
+  max-width: 220px;
+}
+.roadmap-page .arrow-row svg.arrow {
   width: 100px;
   height: 100px;
+  color: #5a5a6a;
   flex-shrink: 0;
-  color: #fff;
 }
-.roadmap-page .arrow-row .left-arrow {
-  transform: rotate(-45deg);
+.roadmap-page .arrow-row .arrow-down {
+  transform: rotate(-90deg);
+  color: rgba(76, 93, 232, 0.5);
 }
-.roadmap-page .arrow-row .right-arrow {
+.roadmap-page .arrow-row .arrow-dr {
   transform: rotate(-135deg);
+  color: rgba(76, 93, 232, 0.5);
 }
-.roadmap-page #row2 {
-  margin-left: 33%;
-  width: 35%;
-  gap: 50px;
-}
-.roadmap-page #arrow-row2-rightdiv {
-  margin-left: 5%;
-  gap: 30px;
+.roadmap-page .arrow-row .arrow-dl {
+  transform: rotate(-45deg);
+  color: rgba(76, 93, 232, 0.5);
 }
 .roadmap-page .module {
   position: fixed;
   top: 0;
   right: 0;
-  width: 80%;
+  width: min(82vw, 720px);
   height: 100vh;
-  background-color: #2d2d2d;
-  transition: transform 0.3s ease-in-out;
+  background: #1e1e23;
+  border-left: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: -24px 0 80px rgba(0, 0, 0, 0.55);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   transform: translateX(100%);
   will-change: transform;
+  z-index: 300;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 .roadmap-page .module.shown {
   transform: translateX(0);
 }
 .roadmap-page .module .exit-button {
   background: url("x_icon.png") no-repeat center center;
-  width: 60px;
-  height: 60px;
-  border: none;
+  background-size: 20px 20px;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 6px;
   cursor: pointer;
+  margin: 20px 20px 0 auto;
+  flex-shrink: 0;
+  transition: background-color 0.15s, border-color 0.15s;
 }
-.roadmap-page .module .module-header, .roadmap-page .module .module-progress-text {
+.roadmap-page .module .exit-button:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+.roadmap-page .module .module-header {
+  font-family: "Syne", sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  transform: scaleX(0.85);
   text-align: center;
-  margin-bottom: 10px;
+  margin: 16px 24px 4px;
+  color: #f0f0f4;
 }
-.roadmap-page .module .progress-bar {
-  display: block;
-  margin: 10px auto;
-  width: 30%;
+.roadmap-page .module .module-progress-text {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #8a8a9a;
+  text-align: center;
+  margin: 16px 0 4px;
 }
 .roadmap-page .module .progress-counter {
   text-align: center;
-  margin-top: 0;
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: #8a8a9a;
+}
+.roadmap-page .module .progress-bar {
+  display: block;
+  margin: 0 auto 24px;
+  width: min(50%, 260px);
+  height: 6px;
+  border-radius: 100px;
+  overflow: hidden;
+  border: none;
+  background: #2e2e35;
+  -moz-appearance: none;
+       appearance: none;
+  -webkit-appearance: none;
+}
+.roadmap-page .module .progress-bar::-webkit-progress-bar {
+  background: #2e2e35;
+  border-radius: 100px;
+}
+.roadmap-page .module .progress-bar::-webkit-progress-value {
+  background: #1db954;
+  border-radius: 100px;
+}
+.roadmap-page .module .progress-bar::-moz-progress-bar {
+  background: #1db954;
+  border-radius: 100px;
 }
 .roadmap-page .module table {
   table-layout: fixed;
-  width: 90%;
-  margin: 50px auto;
+  width: calc(100% - 48px);
+  margin: 0 24px 40px;
   border-collapse: collapse;
 }
 .roadmap-page .module th {
   text-align: left;
-  padding-bottom: 15px;
+  padding: 0 0 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #5a5a6a;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
 }
 .roadmap-page .module td {
   text-align: left;
-  padding-top: 20px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #515151;
+  padding: 14px 0 12px;
+  font-size: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  color: #f0f0f4;
+  vertical-align: middle;
 }
-.roadmap-page .module tr {
-  font-size: 16px;
+.roadmap-page .module tr:last-child td {
+  border-bottom: none;
 }
-.roadmap-page .module input {
-  margin: 0 10%;
+.roadmap-page .module input[type=checkbox] {
+  -moz-appearance: none;
+       appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.14);
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.15s, background 0.15s;
+  margin: 0 20%;
 }
-.roadmap-page a {
-  color: #fff;
+.roadmap-page .module input[type=checkbox]:checked {
+  background: #1db954;
+  border-color: #1db954;
+}
+.roadmap-page .module input[type=checkbox]:checked::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 1px;
+  width: 6px;
+  height: 9px;
+  border: 2px solid #fff;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+}
+.roadmap-page .module input[type=checkbox]:hover:not(:checked) {
+  border-color: #1db954;
+}
+.roadmap-page .module a {
+  color: #1db954;
+  text-decoration: none;
+  font-size: 13px;
+}
+.roadmap-page .module a:hover {
+  text-decoration: underline;
+}
+.roadmap-page #row2 .module-button-div {
+  width: 150px;
+  flex: none;
+}
+.roadmap-page #row2 .module-button {
+  width: 100%;
+}
+.roadmap-page > a {
+  color: #1db954;
+}
+
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 299;
+  backdrop-filter: blur(2px);
+}
+.sidebar-overlay.shown {
+  display: block;
 }
 
 .signup-page {
-  @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
   margin: 0;
   padding: 0;
-  height: 100vh;
-  font-family: Inter, Segoe UI, sans-serif;
-  font-size: 12pt;
-  color: rgb(236, 236, 236);
-  background-color: rgb(27, 27, 27);
+  min-height: 100vh;
+  font-family: "DM Sans", sans-serif;
+  color: #f0f0f4;
+  background-color: #1a1a1f;
   background-image: url(assets/signup_background.jpg);
   background-size: cover;
-  background-repeat: no-repeat;
   background-position: center;
   overflow: hidden;
+  display: flex;
+  align-items: stretch;
 }
-.signup-page #sign-up-text {
-  width: 240px;
-  text-align: center;
-}
-.signup-page #error-message {
-  width: 240px;
-  color: red;
-  text-align: center;
+.signup-page .page-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
 .signup-page .form-wrapper {
-  margin-left: 10%;
-  margin-top: 7%;
-  width: 20%;
-  height: 50vh;
-  padding-top: 3%;
-  padding-left: 5%;
-  padding-bottom: 3%;
-  background-color: rgba(53, 53, 53, 0.75);
+  margin-left: clamp(24px, 8vw, 120px);
+  width: clamp(280px, 28vw, 380px);
+  background: rgba(20, 20, 26, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 18px;
+  padding: 40px 40px 36px;
+  backdrop-filter: blur(16px);
+}
+.signup-page .form-wrapper h1#sign-up-text {
+  font-family: "Syne", sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  transform: scaleX(0.85);
+  margin: 0 0 6px;
+  color: #f0f0f4;
+  width: auto;
+  text-align: left;
+}
+.signup-page .form-wrapper #error-message {
+  font-size: 13px;
+  color: #e05555;
+  margin: 0 0 14px;
+  min-height: 18px;
+  width: auto;
+  text-align: left;
 }
 .signup-page .form-wrapper #signup-form {
   display: flex;
-  gap: 25px;
   flex-direction: column;
-  justify-content: center;
-  margin-top: 30px;
-  padding-left: 20px;
-  width: 240px;
+  gap: 14px;
+  margin-top: 24px;
+  padding-left: 0;
+  width: 100%;
 }
 .signup-page .form-wrapper .input-div {
   display: flex;
   align-items: center;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.signup-page .form-wrapper .input-div:focus-within {
+  border-color: #1db954;
+  box-shadow: 0 0 0 3px rgba(29, 185, 84, 0.15);
 }
 .signup-page .form-wrapper label {
-  background-color: rgb(33, 156, 54);
-  height: 36px;
-  width: 40px;
-  padding: 5px 0;
-  margin-bottom: 17px;
-  margin-right: 0;
-  border-radius: 10px 0 0 10px;
+  background-color: #2e2e35;
+  height: 46px;
+  min-width: 44px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  color: #8a8a9a;
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
 }
 .signup-page .form-wrapper input {
-  transform: translateY(-9px);
-  margin-left: 0;
-  height: 43px;
-  font-family: Inter, Segoe UI, sans-serif;
-  font-size: 12px;
-  border-radius: 0 10px 10px 0px;
+  transform: none;
+  margin: 0;
+  height: 46px;
+  width: 100%;
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  padding: 0 14px;
+  border-radius: 0;
   border: none;
-  background-color: rgb(247, 247, 247);
-  transition: 100ms ease;
+  background: #242429;
+  color: #f0f0f4;
+  outline: none;
+  transition: background 0.15s;
+}
+.signup-page .form-wrapper input::-moz-placeholder {
+  color: #5a5a6a;
+}
+.signup-page .form-wrapper input::placeholder {
+  color: #5a5a6a;
 }
 .signup-page .form-wrapper input:hover {
-  border-top: 2px solid rgb(33, 156, 54);
-  border-bottom: 2px solid rgb(33, 156, 54);
-  border-right: 2px solid rgb(33, 156, 54);
+  background: rgb(43.1532467532, 43.1532467532, 49.1467532468);
 }
 .signup-page .form-wrapper input:focus {
-  outline: none;
-  border: 2px;
-  border-color: rgb(33, 156, 54);
+  background: rgb(47.9220779221, 47.9220779221, 54.5779220779);
 }
 .signup-page .form-wrapper button {
-  margin-top: 0px;
+  margin-top: 8px;
   border: none;
   border-radius: 100px;
-  padding: 0.85em;
-  background-color: rgb(33, 156, 54);
-  font-family: Inter, Segoe UI, sans-serif;
-  color: rgb(236, 236, 236);
-  font-size: 16px;
-  font-weight: 600;
+  padding: 13px;
+  background: #1db954;
+  font-family: "Syne", sans-serif;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: 400ms ease;
-}
-.signup-page .form-wrapper button:hover {
-  background-color: rgb(22, 97, 34);
-}
-.signup-page #already-have-an-account {
-  margin: 30px 5%;
+  transition: background 0.2s, transform 0.15s;
   width: 100%;
 }
-.signup-page #already-have-an-account a {
-  text-decoration: none;
-  color: rgb(33, 156, 54);
+.signup-page .form-wrapper button:hover {
+  background: #158a3c;
+  transform: translateY(-1px);
 }
-.signup-page #create-account a {
+.signup-page .form-wrapper button:active {
+  transform: translateY(0);
+}
+.signup-page .form-wrapper #already-have-an-account,
+.signup-page .form-wrapper #create-account {
+  margin: 20px 0 0;
+  font-size: 13px;
+  color: #8a8a9a;
+  width: auto;
+}
+.signup-page .form-wrapper #already-have-an-account a,
+.signup-page .form-wrapper #create-account a {
+  color: #1db954;
   text-decoration: none;
-  color: rgb(33, 156, 54);
+  font-weight: 600;
+}
+.signup-page .form-wrapper #already-have-an-account a:hover,
+.signup-page .form-wrapper #create-account a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  nav .nav-div {
+    padding: 0 16px;
+  }
+  nav .left-buttons {
+    gap: 4px;
+  }
+  nav .nav-button {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+  .roadmap-page {
+    padding: 32px 12px 60px;
+  }
+  .roadmap-page .roadmap-flow {
+    gap: 0;
+  }
+  .roadmap-page .module-row {
+    gap: 10px;
+  }
+  .roadmap-page .module-row .module-button-div {
+    max-width: 140px;
+  }
+  .roadmap-page .module-button {
+    min-height: 64px;
+    font-size: 12px;
+    border-radius: 12px;
+  }
+  .roadmap-page .arrow-row {
+    gap: 10px;
+  }
+  .roadmap-page .arrow-row .arrow-cell, .roadmap-page .arrow-row .arrow-spacer {
+    max-width: 140px;
+  }
+  .roadmap-page .arrow-row svg.arrow {
+    width: 36px;
+    height: 36px;
+  }
+  .roadmap-page .module {
+    width: 100vw;
+    border-left: none;
+  }
+  .signup-page .form-wrapper {
+    margin: 0 auto;
+    width: calc(100% - 40px);
+    padding: 30px 24px;
+  }
 }/*# sourceMappingURL=styles.css.map */

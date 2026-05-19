@@ -2,9 +2,8 @@
 {% extends 'base.html' %}
 
 <!-- Macros -->
-<!-- module_id = name w/ dashes, module_title = name w/ spaces, module_shorthand = name in DB (Ex: bsh for Beginners Start Here)
-     tbl = The variable passed from app.py containing each DB entry for this module 
-     tbl_len = Variable from app.py. Length of DB for this module. -->
+<!-- module_id = name w/ dashes, module_title = name w/ spaces, module_shorthand = name in DB
+     tbl = DB entries for this module, tbl_len = length of DB for this module -->
 {% macro render_module(module_id, module_title, module_shorthand, tbl, tbl_len) %}
     <div id="{{ module_id }}" class="module-button-div">
         <button id="{{ module_id }}-button" class="module-button">{{ module_title }}</button>
@@ -17,80 +16,116 @@
         <p class="progress-counter" id="{{ module_shorthand }}-completed-count">(0/{{ tbl_len }})</p>
         <progress class="progress-bar" id="{{ module_shorthand }}-progress" max="{{ tbl_len }}" value="0"></progress>
 
-
         <table>
-            <th>Title</th>
-            <th>Video Length</th>
-            <th>URL</th>
-            <th>Watched</th>
-
-            {% for lesson in tbl %}
+            <thead>
                 <tr>
-                    <td>{{ lesson.internal_title }}</td>
-                    <td>{{ lesson.length }} minutes</td>
-                    <td><a href="{{ lesson.url }}">{{ lesson.url }}</a></td>
-                    <td><input type="checkbox" {% if lesson.lesson_id in completed_lessons %}checked{% endif %} class="{{ module_shorthand }}-checkbox" id="{{ lesson.lesson_id }}"></td>
+                    <th>Title</th>
+                    <th>Length</th>
+                    <th>URL</th>
+                    <th>Done</th>
                 </tr>
-            {% endfor %}
+            </thead>
+            <tbody>
+                {% for lesson in tbl %}
+                    <tr>
+                        <td>{{ lesson.internal_title }}</td>
+                        <td>{{ lesson.length }} min</td>
+                        <td><a href="{{ lesson.url }}" target="_blank" rel="noopener">Link</a></td>
+                        <td><input type="checkbox" {% if lesson.lesson_id in completed_lessons %}checked{% endif %} class="{{ module_shorthand }}-checkbox" id="{{ lesson.lesson_id }}"></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
         </table>
     </div>
 {% endmacro %}
 
+{# Reusable arrow SVG path #}
+{% macro arrow_svg(extra_class) %}
+<svg class="arrow {{ extra_class }}" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <path fill="currentColor" d="m7.85 13l2.85 2.85q.3.3.288.7t-.288.7q-.3.3-.712.313t-.713-.288L4.7 12.7q-.3-.3-.3-.7t.3-.7l4.575-4.575q.3-.3.713-.287t.712.312q.275.3.288.7t-.288.7L7.85 11H19q.425 0 .713.288T20 12t-.288.713T19 13z"/>
+</svg>
+{% endmacro %}
 
-{% block head %}
-{% endblock %}
+{% block head %}{% endblock %}
 
 {% block body %}
+<!-- Overlay for sidebar -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
 <div class="content roadmap-page">
-    <h1>Guitar Learning Roadmap</h1>
+    <h1>Guitar Learning <span>Roadmap</span></h1>
 
-    
-    <!-- Beginners Start Here  -->
-     <div id="row0" class="module-row">
-        {{ render_module('beginners-start-here', 'Beginners Start Here', 'bsh', bsh_modules, num_bsh_modules) }}
-        
-     </div>
+    <div class="roadmap-flow">
 
-     <div class="arrow-row" id="arrow-row1">
-        <!-- Arrows -->
-        <svg class="arrow left-arrow" id="arrow1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m7.85 13l2.85 2.85q.3.3.288.7t-.288.7q-.3.3-.712.313t-.713-.288L4.7 12.7q-.3-.3-.3-.7t.3-.7l4.575-4.575q.3-.3.713-.287t.712.312q.275.3.288.7t-.288.7L7.85 11H19q.425 0 .713.288T20 12t-.288.713T19 13z"/></svg>
-        <svg class="arrow right-arrow" id="arrow2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m7.85 13l2.85 2.85q.3.3.288.7t-.288.7q-.3.3-.712.313t-.713-.288L4.7 12.7q-.3-.3-.3-.7t.3-.7l4.575-4.575q.3-.3.713-.287t.712.312q.275.3.288.7t-.288.7L7.85 11H19q.425 0 .713.288T20 12t-.288.713T19 13z"/></svg>
-     </div>
-    
-
-    <div id="row1" class="module-row">
-        <!-- Basic Chords -->
-        {{ render_module('basic-chords', 'Basic Chords', 'bc', bc_modules, num_bc_modules) }}
-
-        <!-- Picking 1 -->
-        {{ render_module('picking-1', 'Picking 1', 'pck1', pck1_modules, num_pck1_modules) }}
-    </div>
-
-    <div class="arrow-row" id="arrow-row2">
-        <!-- Arrows -->
-         <div id="arrow-row2-leftdiv">
-            <svg class="arrow left-arrow" id="arrow3" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m7.85 13l2.85 2.85q.3.3.288.7t-.288.7q-.3.3-.712.313t-.713-.288L4.7 12.7q-.3-.3-.3-.7t.3-.7l4.575-4.575q.3-.3.713-.287t.712.312q.275.3.288.7t-.288.7L7.85 11H19q.425 0 .713.288T20 12t-.288.713T19 13z"/></svg>
-         </div>
-        <div id="arrow-row2-rightdiv">
-            <svg class="arrow left-arrow" id="arrow3" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m7.85 13l2.85 2.85q.3.3.288.7t-.288.7q-.3.3-.712.313t-.713-.288L4.7 12.7q-.3-.3-.3-.7t.3-.7l4.575-4.575q.3-.3.713-.287t.712.312q.275.3.288.7t-.288.7L7.85 11H19q.425 0 .713.288T20 12t-.288.713T19 13z"/></svg>
-            <svg class="arrow right-arrow" id="arrow4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m7.85 13l2.85 2.85q.3.3.288.7t-.288.7q-.3.3-.712.313t-.713-.288L4.7 12.7q-.3-.3-.3-.7t.3-.7l4.575-4.575q.3-.3.713-.287t.712.312q.275.3.288.7t-.288.7L7.85 11H19q.425 0 .713.288T20 12t-.288.713T19 13z"/></svg>
+        <!-- ── Row 0: Beginners Start Here ── -->
+        <div id="row0" class="module-row">
+            <div class="module-button-div"><!-- spacer --></div>
+            {{ render_module('beginners-start-here', 'Beginners Start Here', 'bsh', bsh_modules, num_bsh_modules) }}
+            <div class="module-button-div"><!-- spacer --></div>
         </div>
-    </div>
 
-   
-   
-    <div id="row2" class="module-row">
-         <!-- Scales and Improv -->
-         {{ render_module('scales-1', 'Scales and Improv', 'scales1', scales1_modules, num_scales1_modules) }}
+        <!--
+            Arrow row 1: one arrow under "Beginners Start Here" splitting left toward
+            Basic Chords and right toward Picking 1.
+            Layout mirrors the 3-column row above (spacer | bsh | spacer) AND the
+            3-column row below (bc | spacer | pck1).
 
-        <!-- Picking 2 -->
-         {{ render_module('picking-2', 'Picking 2', 'pck2', pck2_modules, num_pck2_modules) }}
+            Column 1 (bc target):  arrow-dr  (pointing down-right)
+            Column 2 (centre/bsh): two arrows side-by-side
+            Column 3 (pck1 target): arrow-dl (pointing down-left)
 
-        <!-- Articulation -->
-         {{ render_module('artc', 'Articulation', 'artc', artc_modules, num_artc_modules) }}
-    </div>
-     
-     
+            We use a single centre cell with both arrows so they stay anchored
+            to the BSH button regardless of screen width.
+        -->
+        <div class="arrow-row" id="arrow-row1">
+            <div class="arrow-cell"><!-- left spacer --></div>
+            <div class="arrow-cell" style="gap:8px; display:flex; justify-content:center;">
+                {{ arrow_svg('arrow-dl') }}
+                {{ arrow_svg('arrow-dr') }}
+            </div>
+            <div class="arrow-cell"><!-- right spacer --></div>
+        </div>
+
+        <!-- ── Row 1: Basic Chords | Picking 1 ── -->
+        <div id="row1" class="module-row">
+            {{ render_module('basic-chords', 'Basic Chords', 'bc', bc_modules, num_bc_modules) }}
+            <div class="module-button-div"><!-- centre spacer --></div>
+            {{ render_module('picking-1', 'Picking 1', 'pck1', pck1_modules, num_pck1_modules) }}
+        </div>
+
+        <!--
+            Arrow row 2:
+            - Basic Chords → Scales and Improv  (col 1, arrow-down)
+            - Picking 1    → Picking 2          (col 3, arrow-down)
+            - Picking 1    → Articulation       (col 3, arrow-dr)
+            Row below has 3 equal columns: scales1 | pck2 | artc
+        -->
+        <div class="arrow-row" id="arrow-row2" style="justify-content: space-between; padding: 0 8%;">
+            <div class="arrow-cell">
+                {{ arrow_svg('arrow-down') }}
+            </div>
+            <div class="arrow-spacer"><!-- gap --></div>
+            <div class="arrow-cell" style="gap:8px; display:flex; justify-content:center;">
+                {{ arrow_svg('arrow-dl') }}
+                {{ arrow_svg('arrow-dr') }}
+            </div>
+        </div>
+
+        <!-- ── Row 2: Scales and Improv | Picking 2 | Articulation ── -->
+        <div id="row2" class="module-row" style="justify-content: space-between; padding: 0 2%;">
+            <!-- Left module (Scales and Improv) -->
+            <div style="padding: 0 10.5%;">
+                {{ render_module('scales-1', 'Scales and Improv', 'scales1', scales1_modules, num_scales1_modules) }}
+            </div>
+            
+            <!-- Right module (Picking 2, Articulation) -->
+            <div style="display: flex; gap: 32px;">
+                {{ render_module('picking-2', 'Picking 2', 'pck2', pck2_modules, num_pck2_modules) }}
+                {{ render_module('artc', 'Articulation', 'artc', artc_modules, num_artc_modules) }}
+            </div>
+        </div>
+
+    </div><!-- /.roadmap-flow -->
 </div>
 
 <script src="{{ url_for('static', filename='roadmap_script.js') }}" defer></script>

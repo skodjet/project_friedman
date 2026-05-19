@@ -1,437 +1,692 @@
-// Navbar variables
-$dropdown-text-color: rgb(236, 236, 236);
-$dropdown-accent-color: rgb(33, 156, 54);
-$dropdown-hover-color: rgb(22, 97, 34);
-$dropdown-background-color: #3b3b3b;
+// ─────────────────────────────────────────────
+//  DESIGN TOKENS
+// ─────────────────────────────────────────────
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
 
-// Homepage variables
-$module-color: rgb(72, 84, 220);
-$module-hover-color: rgb(44, 53, 152);
-$page-color: #313030;
-$nav-color: #464950;
-$sidebar-color: #2d2d2d;
-$table-row-border-color: #515151;
+// Palette
+$bg-deep:        #1a1a1f;
+$bg-card:        #242429;
+$bg-sidebar:     #1e1e23;
+$nav-bg:         #111115;
+$surface:        #2e2e35;
 
-// Signup variables
-$signup-page-color: rgb(27, 27, 27);
-$signup-accent-color: rgb(33, 156, 54);
-$signup-hover-color: rgb(22, 97, 34);
-$signup-text-color: rgb(236, 236, 236);
-$signup-input-color: rgb(247, 247, 247);
+$accent-green:   #1db954;
+$accent-green-dim: #158a3c;
+$accent-blue:    #4c5de8;
+$accent-blue-dim:#333fbb;
 
+$text-primary:   #f0f0f4;
+$text-muted:     #8a8a9a;
+$text-dim:       #5a5a6a;
 
-.hidden {
-    display: none !important;
-}
+$border:         rgba(255,255,255,0.07);
+$border-lit:     rgba(255,255,255,0.14);
 
-nav {
-        font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        width: 100%;
-        height: 75px;
-        margin-top: 0px;
-        background-color: $nav-color;
+$radius-sm:  6px;
+$radius-md:  12px;
+$radius-lg:  18px;
 
-        
-
-        .nav-div {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 50px;
-
-            .left-buttons {
-                height: 100%;
-                display: flex;
-                align-items: center;
-                flex-direction: row;
-                gap: 50px;
-            }
-
-            .right-buttons {
-                display: flex;
-                justify-content: right;
-                align-items: center;
-                padding-right: 5%;
-            }
-        }
-
-        .nav-button {
-            color: #fff;
-            font-size: 20px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .signup-button {
-            color: #fff;
-            font-size: 15px;
-            border: none;
-            border-radius: 100px;
-            font-weight: 600;
-            padding: 0.85em;
-            background-color: $signup-accent-color;
-            font-family: Inter, Segoe UI, sans-serif;
-            color: $signup-text-color;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 400ms ease;
-            text-decoration: none;
-        }
-
-
-        .signup-button:hover {
-            background-color: $signup-hover-color;
-        }
-
-        .profile-button {
-            display: inline-block;
-            background-color: transparent;
-            border: none;
-            margin-left: auto;
-            margin-right: 100px;
-        }
-
-        .profile-dropdown {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            right: 30px;
-            background-color: $dropdown-background-color;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 100;
-            border-radius: 8px;
-            // border-color: $dropdown-border-color;
-            padding: 10px 0;
-            color: $dropdown-text-color;
-
-            // Show the dropdown menu when profile button clicked
-            &.show {
-                display: block;
-            }
-
-            p {
-                font-size: 14px;
-                padding: 0 10px;
-            }
-
-            a {
-                color: $dropdown-accent-color;
-                padding: 12px 16px;
-                text-decoration: none;
-                display: block;
-
-                &:hover {
-                    background-color: #444;
-                    color: $dropdown-hover-color;
-                }
-            }
-        }
-    }
-
+// ─────────────────────────────────────────────
+//  RESET
+// ─────────────────────────────────────────────
+*, *::before, *::after { box-sizing: border-box; }
 
 body {
-    margin: 0;
+  margin: 0;
+  background-color: $bg-deep;
+  color: $text-primary;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-// Roadmap page
-.roadmap-page {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: $page-color;
+.hidden { display: none !important; }
+
+// ─────────────────────────────────────────────
+//  NAVIGATION
+// ─────────────────────────────────────────────
+nav {
+  font-family: 'Syne', sans-serif;
+  width: 100%;
+  height: 68px;
+  background-color: $nav-bg;
+  border-bottom: 1px solid $border;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  backdrop-filter: blur(12px);
+
+  .nav-div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+  }
+
+  .left-buttons {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .right-buttons {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .nav-button {
+    color: $text-muted;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: $radius-sm;
+    transition: color 0.2s, background 0.2s;
+
+    &:hover, &#roadmap-button {
+      color: $text-primary;
+      background: rgba(255,255,255,0.06);
+    }
+
+    &#roadmap-button {
+      color: $accent-green;
+      background: rgba(29, 185, 84, 0.1);
+    }
+  }
+
+  .signup-button {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
     color: #fff;
-    padding-top: 0px;
-    height: 100vh;
+    background: $accent-green;
+    border: none;
+    border-radius: 100px;
+    padding: 9px 20px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
 
-    
+    &:hover {
+      background: $accent-green-dim;
+      transform: translateY(-1px);
+    }
+  }
 
-    h1 {
-        display: flex;
-        justify-content: center;
-        margin-top: 0;
+  .profile-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 50%;
+    transition: background 0.2s;
+    position: relative;
+
+    &:hover { background: rgba(255,255,255,0.08); }
+
+    svg { display: block; }
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    background: $surface;
+    border: 1px solid $border-lit;
+    min-width: 180px;
+    border-radius: $radius-md;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+    padding: 8px 0;
+    color: $text-primary;
+
+    &.show { display: block; }
+
+    .user-email {
+      font-size: 12px;
+      color: $text-muted;
+      padding: 6px 14px 8px;
+      margin: 0;
+      word-break: break-all;
     }
 
-    .module-button {
-        display: block;
-        border-radius: 10px;
-        height: 80px;
-        width: 180px;
-        background-color: $module-color;
-        color: #fff;
-        cursor: pointer;
-        transition: background-color 0.2s ease;
+    hr {
+      border: none;
+      border-top: 1px solid $border;
+      margin: 0 0 4px;
     }
-
-    .module-button:hover {
-        background-color: $module-hover-color;
-    }
-
-    
-    .module-button {
-        font-weight: bold;
-        height: 75%;
-        border-radius: 8px;
-        border-color: transparent;
-    }
-
-    .module-button-div {
-        height: 80px;
-        display: flex;
-        justify-content: center;
-    }
-
-    
-    .module-row {
-        display: flex;
-        justify-content: center;
-        align-items: center; 
-        gap: 40px;
-        width: 100%;
-
-    }
-
-    .arrow-row {
-        display: flex;
-        justify-content: center;
-        align-items: center; 
-        gap: 40px;
-        margin-top: -20px;
-        width: 100%;
-
-        .arrow {
-            width: 100px;
-            height: 100px;
-            flex-shrink: 0;   
-            color: #fff;
-        }
-
-        .left-arrow {
-            transform: rotate(-45deg);
-        }
-
-        .right-arrow {
-            transform: rotate(-135deg);
-        }
-    }
-
-    #row2 {
-        margin-left: 33%;
-        width: 35%;
-        gap: 50px;
-    }
-
-    #arrow-row2-rightdiv {
-        margin-left: 5%;
-        gap: 30px;
-    }
-
-    .module {
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 80%;
-        height: 100vh;
-        background-color: $sidebar-color;
-        transition: transform 0.3s ease-in-out;
-        transform: translateX(100%);
-        will-change: transform;
-
-        &.shown {
-            transform: translateX(0);
-        }
-        
-        .exit-button {
-            background: url('x_icon.png') no-repeat center center;
-            width: 60px;
-            height: 60px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .module-header, .module-progress-text {
-            text-align: center;
-            margin-bottom: 10px;
-        }
-
-        .progress-bar {
-            display: block;
-            margin: 10px auto;
-            width: 30%;
-        }
-        
-        .progress-counter {
-            text-align: center;
-            margin-top: 0;
-        }
-        
-        table {
-            table-layout: fixed;
-            width: 90%;
-            margin: 50px auto;
-            border-collapse: collapse;
-        }
-
-        th {
-            text-align: left;
-            padding-bottom: 15px;
-            
-        }
-
-        td {
-            text-align: left;
-            padding-top: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid $table-row-border-color;
-        }
-
-        tr {
-            font-size: 16px;
-        }
-
-        input {
-            margin: 0 10%;
-        }
-    }        
 
     a {
-        color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: $text-primary;
+      padding: 9px 14px;
+      text-decoration: none;
+      display: block;
+      transition: background 0.15s, color 0.15s;
+
+      &:hover {
+        background: rgba(255,255,255,0.06);
+        color: $accent-green;
+      }
+
+      &.logout-link {
+        color: #e05555;
+        &:hover { color: #ff6b6b; background: rgba(224,85,85,0.08); }
+      }
+    }
+  }
+}
+
+// ─────────────────────────────────────────────
+//  ROADMAP PAGE
+// ─────────────────────────────────────────────
+.roadmap-page {
+  background-color: $bg-deep;
+  // Subtle grid texture
+  background-image:
+    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+  background-size: 40px 40px;
+  min-height: calc(100vh - 68px);
+  padding: 48px 24px 80px;
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(24px, 4vw, 40px);
+    font-weight: 800;
+    transform: scaleX(0.85);
+    text-align: center;
+    margin: 0 0 48px;
+    color: $text-primary;
+
+    span {
+      color: $accent-green;
+    }
+  }
+
+  // ── Roadmap flow container ──────────────────
+  // Each row is a horizontal flex of module-button-divs.
+  // Arrows live in .arrow-row which mirrors the row above/below it.
+  .roadmap-flow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  // ── Module rows ─────────────────────────────
+  .module-row {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 32px;
+    width: 100%;
+
+    // each cell takes equal share so arrows can align perfectly
+    .module-button-div {
+      flex: 1;
+      max-width: 220px;
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  // ── Module button ───────────────────────────
+  .module-button {
+    width: 100%;
+    min-height: 76px;
+    background: $bg-card;
+    border: 1px solid $border-lit;
+    border-radius: $radius-lg;
+    color: $text-primary;
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+
+    // coloured left accent bar
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 4px;
+      background: $accent-blue;
+      border-radius: $radius-lg 0 0 $radius-lg;
+      transition: width 0.2s;
+    }
+
+    &:hover {
+      background: lighten($bg-card, 4%);
+      border-color: rgba(76,93,232,0.45);
+      box-shadow: 0 0 0 1px rgba(76,93,232,0.3), 0 8px 24px rgba(0,0,0,0.4);
+      transform: translateY(-2px);
+
+      &::before { width: 6px; }
+    }
+
+    &:active { transform: translateY(0); }
+  }
+
+  // ── Arrow rows ──────────────────────────────
+  // The key to responsive arrows: each arrow-row mirrors the module-row
+  // above/below it by using the *same* flex layout and same gap.
+  // Each arrow cell aligns with its source module cell.
+  .arrow-row {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 32px;
+    width: 100%;
+    margin: 0;
+    // equal max-width as module-row so columns line up
+    max-width: 860px;
+
+    .arrow-cell {
+      flex: 1;
+      max-width: 220px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    // spacer: invisible cell that holds column space but shows nothing
+    .arrow-spacer {
+      flex: 1;
+      max-width: 220px;
+    }
+
+    svg.arrow {
+      width: 100px;
+      height: 100px;
+      color: $text-dim;
+      flex-shrink: 0;
+    }
+
+    .arrow-down  { transform: rotate(-90deg);  color: rgba(76,93,232,0.5); }
+    .arrow-dr    { transform: rotate(-135deg); color: rgba(76,93,232,0.5); }
+    .arrow-dl    { transform: rotate(-45deg);  color: rgba(76,93,232,0.5); }
+  }
+
+  // ── Sidebar panel ───────────────────────────
+  .module {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(82vw, 720px);
+    height: 100vh;
+    background: $bg-sidebar;
+    border-left: 1px solid $border-lit;
+    box-shadow: -24px 0 80px rgba(0,0,0,0.55);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateX(100%);
+    will-change: transform;
+    z-index: 300;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+
+    &.shown { transform: translateX(0); }
+
+    .exit-button {
+      background: url('x_icon.png') no-repeat center center;
+      background-size: 20px 20px;
+      width: 44px;
+      height: 44px;
+      border: 1px solid $border;
+      border-radius: $radius-sm;
+      cursor: pointer;
+      margin: 20px 20px 0 auto;
+      flex-shrink: 0;
+      transition: background-color 0.15s, border-color 0.15s;
+
+      &:hover {
+        background-color: rgba(255,255,255,0.06);
+        border-color: $border-lit;
+      }
+    }
+
+    .module-header {
+      font-family: 'Syne', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      transform: scaleX(0.85);
+      text-align: center;
+      margin: 16px 24px 4px;
+      color: $text-primary;
+    }
+
+    .module-progress-text {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: $text-muted;
+      text-align: center;
+      margin: 16px 0 4px;
+    }
+
+    .progress-counter {
+      text-align: center;
+      margin: 0 0 8px;
+      font-size: 14px;
+      color: $text-muted;
+    }
+
+    .progress-bar {
+      display: block;
+      margin: 0 auto 24px;
+      width: min(50%, 260px);
+      height: 6px;
+      border-radius: 100px;
+      overflow: hidden;
+      border: none;
+      background: $surface;
+      appearance: none;
+      -webkit-appearance: none;
+
+      &::-webkit-progress-bar  { background: $surface; border-radius: 100px; }
+      &::-webkit-progress-value { background: $accent-green; border-radius: 100px; }
+      &::-moz-progress-bar { background: $accent-green; border-radius: 100px; }
+    }
+
+    table {
+      table-layout: fixed;
+      width: calc(100% - 48px);
+      margin: 0 24px 40px;
+      border-collapse: collapse;
+    }
+
+    th {
+      text-align: left;
+      padding: 0 0 12px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: $text-dim;
+      border-bottom: 1px solid $border-lit;
+    }
+
+    td {
+      text-align: left;
+      padding: 14px 0 12px;
+      font-size: 14px;
+      border-bottom: 1px solid $border;
+      color: $text-primary;
+      vertical-align: middle;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid $border-lit;
+      border-radius: 4px;
+      cursor: pointer;
+      position: relative;
+      transition: border-color 0.15s, background 0.15s;
+      margin: 0 20%;
+
+      &:checked {
+        background: $accent-green;
+        border-color: $accent-green;
+
+        &::after {
+          content: '';
+          position: absolute;
+          left: 3px; top: 1px;
+          width: 6px; height: 9px;
+          border: 2px solid #fff;
+          border-top: none;
+          border-left: none;
+          transform: rotate(45deg);
+        }
+      }
+
+      &:hover:not(:checked) { border-color: $accent-green; }
+    }
+
+    a { color: $accent-green; text-decoration: none; font-size: 13px;
+      &:hover { text-decoration: underline; }
+    }
+  }
+
+  // Second row: scales and improv, picking 2, articulation
+  #row2 {
+    .module-button-div {
+        width: 150px;
+        flex: none;
+    }
+
+    .module-button {
+        width: 100%;
     }
 }
 
+  // ── General link colour inside roadmap ──────
+  > a { color: $accent-green; }
+}
 
-// Signup page
+// Overlay behind sidebar
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 299;
+  backdrop-filter: blur(2px);
+
+  &.shown { display: block; }
+}
+
+
+// ─────────────────────────────────────────────
+//  SIGNUP / LOGIN PAGE
+// ─────────────────────────────────────────────
 .signup-page {
-    @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-    margin:0;
-    padding: 0;
-    height: 100vh;
-    font-family: Inter, Segoe UI, sans-serif;
-    font-size: 12pt;
-    color: $signup-text-color;
-    background-color: $signup-page-color;
-    background-image: url(assets/signup_background.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    overflow: hidden;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: 'DM Sans', sans-serif;
+  color: $text-primary;
+  background-color: $bg-deep;
+  background-image: url(assets/signup_background.jpg);
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
 
-    #sign-up-text {
-        width: 240px;
-        text-align: center;
+  .page-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .form-wrapper {
+    margin-left: clamp(24px, 8vw, 120px);
+    width: clamp(280px, 28vw, 380px);
+    background: rgba(20, 20, 26, 0.88);
+    border: 1px solid $border-lit;
+    border-radius: $radius-lg;
+    padding: 40px 40px 36px;
+    backdrop-filter: blur(16px);
+
+    h1#sign-up-text {
+      font-family: 'Syne', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      transform: scaleX(0.85);
+      margin: 0 0 6px;
+      color: $text-primary;
+      width: auto;
+      text-align: left;
     }
 
     #error-message {
-        width: 240px;
-        color: red;
-        text-align: center;
-    }
-    
-    .form-wrapper {
-        margin-left: 10%;
-        margin-top: 7%;
-        width: 20%;
-        height: 50vh;
-        padding-top: 3%;
-        padding-left: 5%;
-        padding-bottom: 3%;
-        background-color: rgba(53, 53, 53, 0.75);
-
-        #signup-form {
-            display: flex;
-            gap: 25px;
-            flex-direction: column;
-            justify-content: center;
-            margin-top: 30px;
-            padding-left: 20px;
-            width: 240px;
-        }
-
-        .input-div {
-            display: flex;
-            align-items: center;
-        }
-
-        label {
-            background-color: $signup-accent-color;
-            height: 36px;
-            width: 40px;
-            padding: 5px 0;
-            margin-bottom: 17px;
-            margin-right: 0;
-            border-radius: 10px 0 0 10px;
-            display: flex;
-            justify-content: center;
-        }
-
-
-        input {
-            transform: translateY(-9px);
-            margin-left: 0;
-            height: 43px;
-            font-family: Inter, Segoe UI, sans-serif;
-            font-size: 12px;
-            border-radius: 0 10px 10px 0px;
-            border: none;
-            background-color: $signup-input-color;
-            transition: 100ms ease;
-        }
-
-        input:hover {
-            border-top: 2px solid $signup-accent-color;
-            border-bottom: 2px solid $signup-accent-color;
-            border-right: 2px solid $signup-accent-color;
-        }
-
-        input:focus {
-            outline: none;
-            border: 2px;
-            border-color: $signup-accent-color;
-        }
-
-        button {
-            margin-top: 0px;
-            border: none;
-            border-radius: 100px;
-            padding: 0.85em;
-            background-color: $signup-accent-color;
-            font-family: Inter, Segoe UI, sans-serif;
-            color: $signup-text-color;
-            font-size: 16px;
-            font-weight: 600;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: 400ms ease;
-        }
-
-        button:hover {
-            background-color: $signup-hover-color;
-        }
-        
+      font-size: 13px;
+      color: #e05555;
+      margin: 0 0 14px;
+      min-height: 18px;
+      width: auto;
+      text-align: left;
     }
 
-    #already-have-an-account {
-        margin: 30px 5%;
-        width: 100%;
+    #signup-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 24px;
+      padding-left: 0;
+      width: 100%;
+    }
 
-        a {
-            text-decoration: none;
-            color: $signup-accent-color;
-        }
-    } 
+    .input-div {
+      display: flex;
+      align-items: center;
+      border-radius: $radius-sm;
+      overflow: hidden;
+      border: 1px solid $border-lit;
+      transition: border-color 0.2s, box-shadow 0.2s;
 
+      &:focus-within {
+        border-color: $accent-green;
+        box-shadow: 0 0 0 3px rgba(29,185,84,0.15);
+      }
+    }
+
+    label {
+      background-color: $surface;
+      height: 46px;
+      min-width: 44px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: $text-muted;
+      border-right: 1px solid $border;
+      border-radius: 0;
+      margin: 0;
+      padding: 0;
+      flex-shrink: 0;
+    }
+
+    input {
+      transform: none;
+      margin: 0;
+      height: 46px;
+      width: 100%;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      padding: 0 14px;
+      border-radius: 0;
+      border: none;
+      background: $bg-card;
+      color: $text-primary;
+      outline: none;
+      transition: background 0.15s;
+
+      &::placeholder { color: $text-dim; }
+      &:hover { background: lighten($bg-card, 3%); }
+      &:focus { background: lighten($bg-card, 5%); }
+    }
+
+    button {
+      margin-top: 8px;
+      border: none;
+      border-radius: 100px;
+      padding: 13px;
+      background: $accent-green;
+      font-family: 'Syne', sans-serif;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      width: 100%;
+
+      &:hover {
+        background: $accent-green-dim;
+        transform: translateY(-1px);
+      }
+
+      &:active { transform: translateY(0); }
+    }
+
+    #already-have-an-account,
     #create-account {
-        a {
-            text-decoration: none;
-            color: $signup-accent-color;
-        }
+      margin: 20px 0 0;
+      font-size: 13px;
+      color: $text-muted;
+      width: auto;
+
+      a {
+        color: $accent-green;
+        text-decoration: none;
+        font-weight: 600;
+
+        &:hover { text-decoration: underline; }
+      }
+    }
+  }
+}
+
+
+// ─────────────────────────────────────────────
+//  RESPONSIVE
+// ─────────────────────────────────────────────
+@media (max-width: 640px) {
+  nav .nav-div { padding: 0 16px; }
+  nav .left-buttons { gap: 4px; }
+  nav .nav-button { font-size: 12px; padding: 5px 10px; }
+
+  .roadmap-page {
+    padding: 32px 12px 60px;
+
+    .roadmap-flow { gap: 0; }
+
+    .module-row {
+      gap: 10px;
+
+      .module-button-div { max-width: 140px; }
     }
 
-    
+    .module-button { min-height: 64px; font-size: 12px; border-radius: $radius-md; }
+
+    .arrow-row {
+      gap: 10px;
+      .arrow-cell, .arrow-spacer { max-width: 140px; }
+      svg.arrow { width: 36px; height: 36px; }
+    }
+
+    .module {
+      width: 100vw;
+      border-left: none;
+    }
+  }
+
+  .signup-page .form-wrapper {
+    margin: 0 auto;
+    width: calc(100% - 40px);
+    padding: 30px 24px;
+  }
 }
