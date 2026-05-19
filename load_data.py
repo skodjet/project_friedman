@@ -1,9 +1,9 @@
 import csv
-from app import db, RoadmapEntry, app
+from application import db, RoadmapEntry, application
 
 
 def load_data():
-    with app.app_context():
+    with application.app_context():
 
         # Delete all previous data
         RoadmapEntry.__table__.drop(db.engine)
